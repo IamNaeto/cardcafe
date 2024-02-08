@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { HiMenuAlt3 } from "react-icons/hi";
+import { RiCloseCircleLine } from "react-icons/ri";
 
 const Header = () => {
   // Manage header bg change on scroll
@@ -40,18 +42,25 @@ const Header = () => {
   };
 
   return (
-    <main className={`fixed top-0 w-full z-50 ${headerBackground}`}>
-      <nav className="w-full flex items-center justify-between px-[5%] py-3">
-        <Link href={"/"}>
-          <Image src={"/img/logo.png"} width={100} height={100} alt="logo" loading="lazy" />
-        </Link>
+    <main className={`fixed left-0 top-0 w-full z-50 ${headerBackground}`} id="header">
+      <nav className="w-full flex flex-col md:flex-row items-start md:items-center justify-between px-0 md:px-[5%] py-3">
+        <div className="w-full md:w-auto flex items-center justify-between px-[5%] md:px-0">
+          <Link href={"/"}>
+            <Image src={"/img/logo.png"} width={60} height={60} alt="logo" loading="lazy" className="w-full" />
+          </Link>
+          {isMenuOpen ?
+            <RiCloseCircleLine className="text-4xl text-yellow block md:hidden cursor-pointer" onClick={toggleMenu} />
+            :
+            <HiMenuAlt3 className="text-4xl text-yellow block md:hidden cursor-pointer" onClick={toggleMenu} />
+          }
+        </div>
 
-        <div className="flex items-center justify-center gap-10 text-[16px] text-dark font-normal">
+        <div className={`${isMenuOpen ? "flex" : "hidden"} w-full md:w-auto backdrop-blur-md md:backdrop-blur-0 pb-5 md:pb-0 md:flex flex-col md:flex-row items-center justify-center gap-6 lg:gap-10 text-[14px] md:text-[16px] text-dark font-normal`}>
           <a href="" className="hover:text-yellow transition-all delay-150">Home</a>
           <a href="" className="hover:text-yellow transition-all delay-150">Card Library</a>
           <a href="" className="hover:text-yellow transition-all delay-150">Documentations</a>
 
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-2 md:gap-4">
             <Link href={"/signin"} className="px-5 py-3 rounded-md border border-transparent hover:border-yellow hover:shadow-2xl hover:shadow-yellow transition-all delay-150">Sign in</Link>
             <Link href={"/register"} className="bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 px-5 py-3 rounded-md text-white">Register</Link>
           </div>

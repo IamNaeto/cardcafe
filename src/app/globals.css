@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* *{
+  border: 2px solid red;
+} */
+
 .hero-bg {
   background: url("/img/herobackground.png");
   background-repeat: no-repeat;
