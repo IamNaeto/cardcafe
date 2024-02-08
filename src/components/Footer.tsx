@@ -21,7 +21,7 @@ const Footer = () => {
                 <FaXTwitter className="hover:text-orange transition-all delay-150 cursor-pointer" />
                 <FaInstagram className="hover:text-orange transition-all delay-150 cursor-pointer" />
             </div>
-            <p className="mt-5 md:mt-10">Copyright © 2024. CC_Gen. All rights reserved.</p>
+            <p className="mt-5 md:mt-10 text-[13px] md:[15px] text-center">Copyright © 2024. CC_Gen. All rights reserved.</p>
         </main>
     );
 }

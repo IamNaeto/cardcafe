@@ -55,7 +55,7 @@ const Header = () => {
           }
         </div>
 
-        <div className={`${isMenuOpen ? "flex" : "hidden"} w-full md:w-auto backdrop-blur-md md:backdrop-blur-0 pb-5 md:pb-0 md:flex flex-col md:flex-row items-center justify-center gap-6 lg:gap-10 text-[14px] md:text-[16px] text-dark font-normal`}>
+        <div className={`${isMenuOpen ? "flex" : "hidden"} w-full md:w-auto backdrop-blur-lg md:backdrop-blur-0 pb-5 md:pb-0 md:flex flex-col md:flex-row items-center justify-center gap-6 lg:gap-10 text-[14px] md:text-[16px] text-dark font-normal`}>
           <a href="" className="hover:text-yellow transition-all delay-150">Home</a>
           <a href="" className="hover:text-yellow transition-all delay-150">Card Library</a>
           <a href="" className="hover:text-yellow transition-all delay-150">Documentations</a>
