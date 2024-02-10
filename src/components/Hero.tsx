@@ -12,8 +12,8 @@ const Hero = () => {
                         <Link href={"/"} className="bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 w-[200px] px-5 py-3 rounded-md text-white">Get Started</Link>
                     </div>
                 </div>
-                <div className="flex items-center md:items-end justify-center md:justify-end my-8 md:my-0">
-                    <Image src={"/img/heroimage.png"} width={300} height={300} alt="hero-img" loading="lazy" />
+                <div className="flex items-center justify-center my-8 md:my-0">
+                    <Image src={"/img/heroimage.png"} width={300} height={300} alt="hero-img" loading="lazy" className="w-[90%] md:w-[55%]"/>
                 </div>
             </section>
 

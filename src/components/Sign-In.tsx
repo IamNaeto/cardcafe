@@ -11,7 +11,7 @@ const Sign_In = () => {
                 </div>
 
                 <div className="hidden md:block">
-                    <Image src={"/img/signin-img.png"} alt={"sigin-img"} width={400} height={400} />
+                    <Image src={"/img/signin-img.png"} alt={"sigin-img"} width={400} height={400} loading="lazy"/>
                 </div>
             </section>
 
@@ -29,7 +29,7 @@ const Sign_In = () => {
                     <p className="text-center">or</p>
 
                     <button className="px-5 py-3 rounded-md text-dark border border-dark flex items-center justify-center gap-4 hover:shadow-2xl transition-all delay-150">
-                        <Image src={"/img/Google.png"} width={16} height={16} alt="google" />
+                        <Image src={"/img/Google.png"} width={16} height={16} alt="google" loading="lazy"/>
                         Sign In With Google
                     </button>
 
