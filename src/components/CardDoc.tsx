@@ -55,7 +55,7 @@ const CardDoc = () => {
                 <p className="leading-relaxed tracking-wide text-center lg:text-justify">Our Credit Card Generator tool's primary purpose is for software testing and data verification purposes. Instead of using a real credit card, you can use our 100% valid credit cards to safely test your websites & apps. Using our card numbers means no money will be deducted from any account whenever an application is being tested. It allows you to validate all payment testing scenarios such as credit card number length, format, type, issuing network etc.</p>
 
                 <div className="w-full flex items-center lg:items-start justify-center lg:justify-start">
-                <Link href={"/"} className="bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 w-[200px] px-5 py-3 rounded-md text-white text-center">Try It</Link>
+                <Link href={"/create"} className="bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 w-[200px] px-5 py-3 rounded-md text-white text-center">Try It</Link>
                 </div>
 
             </section>
