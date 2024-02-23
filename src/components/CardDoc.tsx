@@ -21,11 +21,6 @@ const CardDoc = () => {
                         <p className="text-[18px] md:text-[22px]">xxxx    xxxx    xxxx    xxxx</p>
                         <Image src={"/img/cardchip.png"} width={50} height={50} alt="cardicon" loading="lazy" />
                     </div>
-
-                    {/* <div>
-                            <p></p>
-                            <Image src={"/"} width={50} height={50} alt="" />
-                        </div> */}
                 </div>
 
                 <p className="text-center leading-relaxed tracking-wide">Business credit card</p>
