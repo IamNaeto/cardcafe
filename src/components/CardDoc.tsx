@@ -17,7 +17,7 @@ const CardDoc = () => {
                     </div>
 
                     <div className="grid gap-6">
-                        <h1 className="text-[24px] md:text-[28px] font-medium">Card Holder’s Name</h1>
+                        <h1 className="text-[24px] md:text-[28px] font-medium">Card Holder&apos;s Name</h1>
                         <p className="text-[18px] md:text-[22px]">xxxx    xxxx    xxxx    xxxx</p>
                         <Image src={"/img/cardchip.png"} width={50} height={50} alt="cardicon" loading="lazy" />
                     </div>
