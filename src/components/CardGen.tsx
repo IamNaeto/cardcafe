@@ -3,6 +3,7 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import html2canvas from "html2canvas";
+import JSZip from 'jszip';
 
 const CardGen = () => {
     const [cardBg, setCardBg] = useState<string>('from-orange to-yellow');
@@ -69,29 +70,65 @@ const CardGen = () => {
     };
 
     const handleDownloadClick = async () => {
+        // Check if a card type is selected
         if (!selectedCardType) {
             toast.error("Please select a card type before generating or downloading");
             return;
         }
 
+        // Check if a card has been generated
         if (!showGeneratedDetails) {
             toast.error("Please generate a card before downloading");
             return;
         }
 
+        // Get references to the card front and back elements
         const cardFront = document.getElementById("card-front");
         const cardBack = document.getElementById("card-back");
-        if (cardFront) {
-            const canvas = await html2canvas(cardFront);
-            const image = canvas.toDataURL("image/png");
 
-            const a = document.createElement("a");
-            a.href = image;
-            a.download = "card_front.png";
-            a.click();
-            toast.success("Card downloaded successfully!")
+        // Check if both elements exist
+        if (cardFront && cardBack) {
+            try {
+                // Capture the content of the card front as an image
+                const canvasFront = await html2canvas(cardFront);
+                const imageFront = canvasFront.toDataURL("image/png");
+
+                // Capture the content of the card back as an image
+                const canvasBack = await html2canvas(cardBack);
+                const imageBack = canvasBack.toDataURL("image/png");
+
+                // Create a new JSZip instance for creating the archive
+                const zip = new JSZip();
+
+                // Add the front and back images to the zip archive
+                zip.file("card_front.png", imageFront.split(',')[1], { base64: true });
+                zip.file("card_back.png", imageBack.split(',')[1], { base64: true });
+
+                // Generate the zip file content as a blob
+                const content = await zip.generateAsync({ type: "blob" });
+                const blob = new Blob([content], { type: "application/zip" });
+
+                // Create a temporary URL for the downloaded file
+                const url = window.URL.createObjectURL(blob);
+
+                // Create a link element to trigger the download
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = "card_images.zip";
+                link.click();
+
+                // Revoke the temporary URL to avoid memory leaks
+                window.URL.revokeObjectURL(url);
+
+                // Show success message on download completion
+                toast.success("Card images downloaded successfully!");
+            } catch (error) {
+                console.error("Error downloading card images:", error);
+                toast.error("Failed to download card images. Please try again.");
+            }
         }
     };
+
 
     return (
         <main className="relative top-[60px] sm:top-[70px] px-[5%] py-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -143,16 +180,16 @@ const CardGen = () => {
 
                         <div className="flex items-center justify-between gap-2 bg-white p-2">
                             <div className="w-full grid gap-[1px]">
-                                <hr className="h-1 w-full bg-black"/>
-                                <hr className="h-1 w-full bg-black"/>
-                                <hr className="h-1 w-full bg-black"/>
-                                <hr className="h-1 w-full bg-black"/>
-                                <hr className="h-1 w-full bg-black"/>
-                                <hr className="h-1 w-full bg-black"/>
-                                <hr className="h-1 w-full bg-black"/>
-                                <hr className="h-1 w-full bg-black"/>
-                                <hr className="h-1 w-full bg-black"/>
-                                <hr className="h-1 w-full bg-black"/>
+                                <hr className="h-1 w-full bg-black" />
+                                <hr className="h-1 w-full bg-black" />
+                                <hr className="h-1 w-full bg-black" />
+                                <hr className="h-1 w-full bg-black" />
+                                <hr className="h-1 w-full bg-black" />
+                                <hr className="h-1 w-full bg-black" />
+                                <hr className="h-1 w-full bg-black" />
+                                <hr className="h-1 w-full bg-black" />
+                                <hr className="h-1 w-full bg-black" />
+                                <hr className="h-1 w-full bg-black" />
                             </div>
 
                             <h2 className="text-[18px] md:text-[22px] text-black">{generatedCVV ? generatedCVV : 'xxx'}</h2>
