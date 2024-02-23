@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,7 +13,6 @@ const CardGen = () => {
 
     const handleSmallDivClick = (bgClass: string) => {
         setCardBg(bgClass);
-        setShowGeneratedDetails(false); // Reset details when changing card type
     };
 
     const getRandomDigits = (length: number) => {
@@ -29,16 +27,26 @@ const CardGen = () => {
 
         if (selectedCardType === "Visa") {
             setGeneratedCardNumber(`4${getRandomDigits(15)}`);
+            setSelectedCardTypeBeforeGenerate(selectedCardType);
+            setShowGeneratedDetails(true);
+            toast.success("Visa card generated successfully");
         } else if (selectedCardType === "Mastercard") {
             setGeneratedCardNumber(`5${getRandomDigits(15)}`);
+            setSelectedCardTypeBeforeGenerate(selectedCardType);
+            setShowGeneratedDetails(true);
+            toast.success("Mastercard card generated successfully");
         } else if (selectedCardType === "Verve") {
             setGeneratedCardNumber(`6${getRandomDigits(15)}`);
+            setSelectedCardTypeBeforeGenerate(selectedCardType);
+            setShowGeneratedDetails(true);
+            toast.success("Verve card generated successfully");
         } else {
             setGeneratedCardNumber(null);
+            setSelectedCardTypeBeforeGenerate(null);
+            setShowGeneratedDetails(false);
+            toast.error("Please select a valid card brand to generate");
         }
 
-        setSelectedCardTypeBeforeGenerate(selectedCardType);
-        setShowGeneratedDetails(true);
     };
 
     const getCardImage = () => {
