@@ -8,6 +8,7 @@ const CardGen = () => {
     const [cardBg, setCardBg] = useState<string>('from-orange to-yellow');
     const [selectedCardType, setSelectedCardType] = useState<string | null>(null);
     const [generatedCardNumber, setGeneratedCardNumber] = useState<string | null>(null);
+    const [generatedCVV, setGeneratedCVV] = useState<string | null>(null);
     const [showGeneratedDetails, setShowGeneratedDetails] = useState(false);
     const [selectedCardTypeBeforeGenerate, setSelectedCardTypeBeforeGenerate] = useState<string | null>(null);
 
@@ -27,21 +28,25 @@ const CardGen = () => {
 
         if (selectedCardType === "Visa") {
             setGeneratedCardNumber(`4${getRandomDigits(15)}`);
+            setGeneratedCVV(getRandomDigits(3));
             setSelectedCardTypeBeforeGenerate(selectedCardType);
             setShowGeneratedDetails(true);
             toast.success("Visa card generated successfully");
         } else if (selectedCardType === "Mastercard") {
             setGeneratedCardNumber(`5${getRandomDigits(15)}`);
+            setGeneratedCVV(getRandomDigits(3));
             setSelectedCardTypeBeforeGenerate(selectedCardType);
             setShowGeneratedDetails(true);
             toast.success("Mastercard card generated successfully");
         } else if (selectedCardType === "Verve") {
             setGeneratedCardNumber(`6${getRandomDigits(15)}`);
+            setGeneratedCVV(getRandomDigits(3));
             setSelectedCardTypeBeforeGenerate(selectedCardType);
             setShowGeneratedDetails(true);
             toast.success("Verve card generated successfully");
         } else {
             setGeneratedCardNumber(null);
+            setGeneratedCVV(null);
             setSelectedCardTypeBeforeGenerate(null);
             setShowGeneratedDetails(false);
             toast.error("Please select a valid card brand to generate");
@@ -74,14 +79,15 @@ const CardGen = () => {
             return;
         }
 
-        const cardDiv = document.getElementById("card-details");
-        if (cardDiv) {
-            const canvas = await html2canvas(cardDiv);
+        const cardFront = document.getElementById("card-front");
+        const cardBack = document.getElementById("card-back");
+        if (cardFront) {
+            const canvas = await html2canvas(cardFront);
             const image = canvas.toDataURL("image/png");
 
             const a = document.createElement("a");
             a.href = image;
-            a.download = "generated_card.png";
+            a.download = "card_front.png";
             a.click();
             toast.success("Card downloaded successfully!")
         }
@@ -90,14 +96,14 @@ const CardGen = () => {
     return (
         <main className="relative top-[60px] sm:top-[70px] px-[5%] py-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
             <section className="text-[14px] md:text-[16px] bg-[#F8F8F8] p-3 sm:p-6 md:p-10 rounded-2xl grid gap-4">
-                <div id="card-details" className={`bg-gradient-to-br ${cardBg} p-4 sm:p-6 rounded-2xl min-h-[300px] text-white relative`}>
+                <div id="card-front" className={`bg-gradient-to-br ${cardBg} p-4 sm:p-6 rounded-2xl min-h-[300px] text-white relative`}>
                     <div className="flex items-end justify-end">
                         <Image src={"/img/cardicon.png"} width={50} height={50} alt="cardicon" loading="lazy" className="mb-4" />
                     </div>
 
                     <div className="grid gap-6">
                         <h1 className="text-[24px] md:text-[28px] font-medium">Card Holder’s Name</h1>
-                        <p className="text-[18px] md:text-[22px]">{generatedCardNumber ? generatedCardNumber : 'xxxx    xxxx    xxxx    xxxx'}</p>
+                        <h2 className="text-[18px] md:text-[22px]">{generatedCardNumber ? generatedCardNumber : 'xxxx    xxxx    xxxx    xxxx'}</h2>
                         <Image src={"/img/cardchip.png"} width={50} height={50} alt="cardicon" loading="lazy" />
                     </div>
 
@@ -109,7 +115,7 @@ const CardGen = () => {
                     )}
                 </div>
 
-                <p className="text-center leading-relaxed tracking-wide">Business credit card</p>
+                <p className="text-center leading-relaxed tracking-wide">Credit Card Front View</p>
 
                 <div className="flex items-center justify-center gap-4">
                     <div
@@ -129,6 +135,34 @@ const CardGen = () => {
                         onClick={() => handleSmallDivClick('from-black to-red')}
                     ></div>
                 </div>
+
+                <div id="card-back" className={`bg-gradient-to-br ${cardBg} py-4 sm:py-6 rounded-2xl min-h-[300px] text-white relative`}>
+                    <div className="bg-black h-16 w-full mt-2"></div>
+
+                    <div className="grid gap-2 px-4 sm:py-6">
+
+                        <div className="flex items-center justify-between gap-2 bg-white p-2">
+                            <div className="w-full grid gap-[1px]">
+                                <hr className="h-1 w-full bg-black"/>
+                                <hr className="h-1 w-full bg-black"/>
+                                <hr className="h-1 w-full bg-black"/>
+                                <hr className="h-1 w-full bg-black"/>
+                                <hr className="h-1 w-full bg-black"/>
+                                <hr className="h-1 w-full bg-black"/>
+                                <hr className="h-1 w-full bg-black"/>
+                                <hr className="h-1 w-full bg-black"/>
+                                <hr className="h-1 w-full bg-black"/>
+                                <hr className="h-1 w-full bg-black"/>
+                            </div>
+
+                            <h2 className="text-[18px] md:text-[22px] text-black">{generatedCVV ? generatedCVV : 'xxx'}</h2>
+                        </div>
+
+                        <p className="text-[14px] md:text-[16px] leading-normal tracking-tight text-justify">This card is issued by and remains the property of Card Cafe. This card may be used only by the named cardholder and in accordance with the Card Cafe Terms and Conditions of Use</p>
+
+                    </div>
+                </div>
+                <p className="text-center leading-relaxed tracking-wide">Credit Card Back View</p>
             </section>
 
             <section className="flex flex-col gap-4 text-[14px] md:text-[16px]">
