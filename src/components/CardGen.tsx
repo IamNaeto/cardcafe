@@ -122,6 +122,13 @@ const CardGen = () => {
 
                 // Show success message on download completion
                 toast.success("Card images downloaded successfully!");
+                toast.success("Card details reset successfully.");
+
+                // Reset card details
+                setGeneratedCardNumber(null);
+                setGeneratedCVV(null);
+                setSelectedCardTypeBeforeGenerate(null);
+                setShowGeneratedDetails(false);
             } catch (error) {
                 console.error("Error downloading card images:", error);
                 toast.error("Failed to download card images. Please try again.");
@@ -138,7 +145,7 @@ const CardGen = () => {
                         <Image src={"/img/cardicon.png"} width={50} height={50} alt="cardicon" loading="lazy" className="mb-4" />
                     </div>
 
-                    <div className="grid gap-6">
+                    <div className="grid gap-8">
                         <h1 className="text-[24px] md:text-[28px] font-medium">Card Holder’s Name</h1>
                         <h2 className="text-[18px] md:text-[22px]">{generatedCardNumber ? generatedCardNumber : 'xxxx    xxxx    xxxx    xxxx'}</h2>
                         <Image src={"/img/cardchip.png"} width={50} height={50} alt="cardicon" loading="lazy" />
@@ -152,7 +159,7 @@ const CardGen = () => {
                     )}
                 </div>
 
-                <p className="text-center leading-relaxed tracking-wide">Credit Card Front View</p>
+                <p className="text-center leading-relaxed tracking-wide font-bold">Credit Card Front View</p>
 
                 <div className="flex items-center justify-center gap-4">
                     <div
@@ -178,7 +185,7 @@ const CardGen = () => {
 
                     <div className="grid gap-2 px-4 sm:py-6">
 
-                        <div className="flex items-center justify-between gap-2 bg-white p-2">
+                        <div className="flex items-center justify-between gap-2 bg-white p-2 mt-4 sm:mt-0">
                             <div className="w-full grid gap-[1px]">
                                 <hr className="h-1 w-full bg-black" />
                                 <hr className="h-1 w-full bg-black" />
@@ -199,7 +206,7 @@ const CardGen = () => {
 
                     </div>
                 </div>
-                <p className="text-center leading-relaxed tracking-wide">Credit Card Back View</p>
+                <p className="text-center leading-relaxed tracking-wide font-bold">Credit Card Back View</p>
             </section>
 
             <section className="flex flex-col gap-4 text-[14px] md:text-[16px]">
@@ -217,7 +224,7 @@ const CardGen = () => {
                     <option value="Verve">Verve</option>
                 </select>
 
-                <div className="w-full flex items-center justify-center gap-4 mt-4">
+                <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 mt-4">
                     <button onClick={handleGenerateClick} className="bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 w-full px-5 py-4 rounded-md text-white text-center">
                         Generate
                     </button>
