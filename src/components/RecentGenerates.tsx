@@ -57,14 +57,14 @@ const RecentGenerates = () => {
             <div className="grid gap-4">
                 <div className="text-[16px] md:text-[18px] font-bold flex items-center justify-between">
                     <h1 className="w-[50px]">S/N</h1>
-                    <h1 className="w-[200px]">Card Name</h1>
+                    <h1 className="w-[150px]">Card Name</h1>
                     <h1 className="w-[200px]">Card Number</h1>
                     <h1 className="w-[200px]">Downloaded Date</h1>
                 </div>
                 {recentGenData.map((recentGen, id) =>(
                 <div key={id} className="text-[14px] md:text-[16px] font-normal flex items-center justify-between">
                     <h1 className="w-[50px]">{recentGen.number}</h1>
-                    <h1 className="w-[200px]">{recentGen.cardName}</h1>
+                    <h1 className="w-[150px]">{recentGen.cardName}</h1>
                     <h1 className="w-[200px]">{recentGen.cardNumber}</h1>
                     <h1 className="w-[200px]">{recentGen.downloadedDate}</h1>
                 </div>

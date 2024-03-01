@@ -5,7 +5,7 @@ import UserInfo from "./UserInfo";
 
 const UserDashboard = () => {
     return ( 
-        <main className="w-[85%] flex flex-col gap-5 px-[3%] py-4">
+        <main className="relative left-0 w-full lg:w-[78%] xl:w-[85%] flex flex-col gap-5 px-[3%] py-4">
             <Nav />
             <UserInfo />
             <Statistics />

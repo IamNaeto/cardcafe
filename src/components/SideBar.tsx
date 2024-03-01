@@ -9,7 +9,7 @@ import Link from "next/link";
 const SideBar = () => {
     const pathName = usePathname()
     return ( 
-        <main className="fixed left-0 w-[230px] h-screen bg-[#fff]">
+        <main className="hidden md:grid fixed left-0 z-50 w-[230px] h-screen bg-[#fff]">
             <section className="w-full h-full text-[14px] md:text-[16px] py-10">
                 <Link href={"/"} className="grid items-center justify-center mb-10">
                     <Image src={"/img/logo.png"} width={100} height={100} alt="logo"/>
