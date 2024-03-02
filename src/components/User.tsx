@@ -10,6 +10,8 @@ const User = () => {
                     <CiLocationOn className="text-2xl" />
                     <p className="text-[12px] md:text-[14px]">Lagos, Nigeria</p>
                 </div>
+                <button className="bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 px-5 py-3 rounded-md text-white">Upload Image</button>
+
         </main>
      );
 }
