@@ -1,5 +1,5 @@
 import Nav from "./Nav";
-import RecentGenerates from "./RecentGenerates";
+import CardDetails from "./CardDetails";
 import Statistics from "./Statistics";
 import UserInfo from "./UserInfo";
 
@@ -15,7 +15,7 @@ const UserDashboard: React.FC<props> = ({ menu, setMenu }) => {
             <Nav menu={menu} setMenu={setMenu} title={"Dashbord"}/>
             <UserInfo />
             <Statistics />
-            <RecentGenerates />
+            <CardDetails title={"Recent Generated Cards"} type={"Date Generated"} />
         </main>
      );
 }

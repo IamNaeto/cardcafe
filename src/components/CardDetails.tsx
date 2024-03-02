@@ -1,5 +1,9 @@
-const RecentGenerates = () => {
-    interface recentGenType {
+interface props {
+    title: string;
+    type: string
+}
+const CardDetails: React.FC<props> = ({title, type}) => {
+    interface cardDetailType {
         id: number;
         number: number;
         cardName: string;
@@ -7,7 +11,7 @@ const RecentGenerates = () => {
         downloadedDate: string
     }
 
-    const recentGenData: recentGenType[] = [
+    const cardDetails: cardDetailType[] = [
         {
             id: 1,
             number: 1,
@@ -19,7 +23,7 @@ const RecentGenerates = () => {
         {
             id: 2,
             number: 2,
-            cardName: "Master Card",
+            cardName: "Visa",
             cardNumber: "2034   2132   3453   2134",
             downloadedDate: "07/12/2022"
 
@@ -35,7 +39,7 @@ const RecentGenerates = () => {
         {
             id: 4,
             number: 4,
-            cardName: "Master Card",
+            cardName: "Verve",
             cardNumber: "2034   2132   3453   2134",
             downloadedDate: "07/12/2022"
 
@@ -43,7 +47,15 @@ const RecentGenerates = () => {
         {
             id: 5,
             number: 5,
-            cardName: "Master Card",
+            cardName: "Verve",
+            cardNumber: "2034   2132   3453   2134",
+            downloadedDate: "07/12/2022"
+
+        },
+        {
+            id: 6,
+            number: 6,
+            cardName: "Visa",
             cardNumber: "2034   2132   3453   2134",
             downloadedDate: "07/12/2022"
 
@@ -51,22 +63,22 @@ const RecentGenerates = () => {
     ]
 
     return ( 
-        <main className="w-full grid gap-4 p-4 rounded-xl bg-white">
-            <h1 className="text-[18px] md:text-[24px] font-bold">Recent Generated Cards</h1>
+        <main className="w-full grid gap-4 p-6 rounded-xl bg-white">
+            <h1 className="text-[18px] md:text-[24px] font-bold">{title}</h1>
 
             <div className="grid gap-4 overflow-x-scroll sm:overflow-hidden">
                 <div className="text-[16px] md:text-[18px] font-bold flex items-center justify-between">
                     <h1 className="w-[50px]">S/N</h1>
                     <h1 className="w-[150px]">Card Name</h1>
                     <h1 className="w-[200px]">Card Number</h1>
-                    <h1 className="w-[200px]">Downloaded Date</h1>
+                    <h1 className="w-[200px]">{type}</h1>
                 </div>
-                {recentGenData.map((recentGen, id) =>(
+                {cardDetails.map((cardDetail, id) =>(
                 <div key={id} className="text-[14px] md:text-[16px] font-normal flex items-center justify-between">
-                    <h1 className="w-[50px]">{recentGen.number}</h1>
-                    <h1 className="w-[150px]">{recentGen.cardName}</h1>
-                    <h1 className="w-[200px]">{recentGen.cardNumber}</h1>
-                    <h1 className="w-[200px]">{recentGen.downloadedDate}</h1>
+                    <h1 className="w-[50px]">{cardDetail.number}</h1>
+                    <h1 className="w-[150px]">{cardDetail.cardName}</h1>
+                    <h1 className="w-[200px]">{cardDetail.cardNumber}</h1>
+                    <h1 className="w-[200px]">{cardDetail.downloadedDate}</h1>
                 </div>
                 ))}
             </div>
@@ -75,4 +87,4 @@ const RecentGenerates = () => {
      );
 }
  
-export default RecentGenerates;
+export default CardDetails;
