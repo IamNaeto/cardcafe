@@ -2,7 +2,7 @@ import { RiAiGenerate } from "react-icons/ri";
 import { IoCloudDownloadOutline } from "react-icons/io5";
 const Statistics = () => {
     return ( 
-        <main className="grid grid-cols-2 gap-4 items-center justify-center">
+        <main className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center justify-center">
             <section className="flex items-center justify-center gap-4 bg-[#fff] rounded-xl p-10">
                 <RiAiGenerate className="text-5xl p-2 text-[#17B643] bg-[#E8F8EC] rounded-full" />
                 <div className="flex flex-col gap-2">

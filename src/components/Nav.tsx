@@ -1,10 +1,26 @@
 import { GoBell } from "react-icons/go";
 import { IoIosArrowDown } from "react-icons/io";
+import { TfiMenuAlt } from "react-icons/tfi";
 import Image from "next/image";
-const Nav = () => {
+
+interface props {
+    menu: boolean;
+    setMenu: React.Dispatch<React.SetStateAction<boolean>> ;
+    title: string;
+}
+
+const Nav: React.FC<props> = ({ menu, setMenu, title }) => {
+
+    const toggleSideBar = () => {
+        setMenu(!menu);
+      };
+
     return ( 
         <main className="relative flex items-center justify-between gap-4 py-4">
-                <h1 className="text-[#0F0F0F] text-[18px] md:text-[24px] font-bold">Dashboard</h1>
+                <div className="flex items-center justify-center gap-4">
+                <TfiMenuAlt className="block lg:hidden text-3xl text-orange cursor-pointer" onClick={toggleSideBar}/>
+                <h1 className="text-[#0F0F0F] text-[18px] md:text-[24px] font-bold">{title}</h1>
+                </div>
 
                 <div className="flex items-center justify-center gap-4 text-[#0F0F0F]">
                     <GoBell className="text-2xl" cursor="pointer"/>

@@ -54,7 +54,7 @@ const RecentGenerates = () => {
         <main className="w-full grid gap-4 p-4 rounded-xl bg-white">
             <h1 className="text-[18px] md:text-[24px] font-bold">Recent Generated Cards</h1>
 
-            <div className="grid gap-4">
+            <div className="grid gap-4 overflow-x-scroll sm:overflow-hidden">
                 <div className="text-[16px] md:text-[18px] font-bold flex items-center justify-between">
                     <h1 className="w-[50px]">S/N</h1>
                     <h1 className="w-[150px]">Card Name</h1>
