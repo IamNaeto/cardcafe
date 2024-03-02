@@ -1,3 +1,4 @@
+"use client"
 import SideBar from "@/components/SideBar";
 import { useState } from "react";
 
