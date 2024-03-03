@@ -4,7 +4,7 @@ import CardGen from "@/components/CardGen";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
-const Create = () => {
+const Generate = () => {
     return ( 
         <main>
             <Header />
@@ -15,4 +15,4 @@ const Create = () => {
      );
 }
  
-export default Create;
+export default Generate;

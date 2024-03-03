@@ -17,7 +17,7 @@ export default function Home() {
       <Testimonials />
       <FAQ />
       <Footer />
-      <BackToTop targetId={"header"} />
+      <BackToTop targetId={"top"} />
     </main>
   );
 }

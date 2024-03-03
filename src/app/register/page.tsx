@@ -10,7 +10,7 @@ const Register = () => {
             <Header />
             <SignUp />
             <Footer />
-            <BackToTop targetId={"header"} />
+            <BackToTop targetId={"top"} />
         </main>
      );
 }

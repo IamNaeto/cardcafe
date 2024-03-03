@@ -10,7 +10,7 @@ const Documentation = () => {
             <Header />
             <Documentations />
             <Footer />
-            <BackToTop targetId={"header"} />
+            <BackToTop targetId={"top"} />
         </main>
      );
 }

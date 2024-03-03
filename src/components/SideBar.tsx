@@ -23,9 +23,9 @@ const SideBar: React.FC<props> = ({ menu, setMenu }) => {
         <main className={`lg:grid fixed left-0 z-50 w-full lg:w-[230px] h-screen backdrop-blur-sm ${menu ? "grid" : "hidden"}`}>
             <section className="w-[230px] lg:w-full h-full text-[14px] md:text-[16px] py-10 bg-[#fff]">
                 <div className="relative grid items-center justify-center mb-10">
-                    <Link href={"/"} >
+                    <div >
                         <Image src={"/img/logo.png"} width={100} height={100} alt="logo"/>
-                    </Link>
+                    </div>
                     <MdOutlineArrowBackIosNew  
                     className="absolute block lg:hidden right-0 top-4 text-3xl text-orange cursor-pointer"
                     onClick={toggleSideBar}

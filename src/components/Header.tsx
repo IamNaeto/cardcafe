@@ -45,7 +45,7 @@ const Header = () => {
   };
 
   return (
-    <main className={`fixed left-0 top-0 w-full z-50 ${headerBackground}`} id="header">
+    <main className={`fixed left-0 top-0 w-full z-50 ${headerBackground}`} id="top">
       <nav className="w-full flex flex-col md:flex-row items-start md:items-center justify-between px-0 md:px-[5%] py-3">
         <div className="w-full md:w-auto flex items-center justify-between px-[5%] md:px-0">
           <Link href={"/"}>

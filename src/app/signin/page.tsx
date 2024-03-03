@@ -10,7 +10,7 @@ const SignIn = () => {
             <Header />
             <Sign_In />
             <Footer />
-            <BackToTop targetId={"header"} />
+            <BackToTop targetId={"top"} />
         </main>
      );
 }

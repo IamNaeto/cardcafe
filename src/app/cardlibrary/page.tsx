@@ -12,7 +12,7 @@ const CardLibrary = () => {
             <LibraryHero />
             <Collections />
             <Footer />
-            <BackToTop targetId={"header"} />
+            <BackToTop targetId={"top"} />
         </main>
      );
 }
