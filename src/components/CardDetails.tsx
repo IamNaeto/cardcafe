@@ -75,10 +75,10 @@ const CardDetails: React.FC<props> = ({title, type}) => {
                 </div>
                 {cardDetails.map((cardDetail, id) =>(
                 <div key={id} className="text-[14px] md:text-[16px] font-normal flex items-center justify-between">
-                    <h1 className="w-[50px]">{cardDetail.number}</h1>
-                    <h1 className="w-[150px]">{cardDetail.cardName}</h1>
-                    <h1 className="w-[200px]">{cardDetail.cardNumber}</h1>
-                    <h1 className="w-[200px]">{cardDetail.downloadedDate}</h1>
+                    <h1 className="w-[50px] py-2">{cardDetail.number}</h1>
+                    <h1 className="w-[150px] py-2">{cardDetail.cardName}</h1>
+                    <h1 className="w-[200px] py-2">{cardDetail.cardNumber}</h1>
+                    <h1 className="w-[200px] py-2">{cardDetail.downloadedDate}</h1>
                 </div>
                 ))}
             </div>
