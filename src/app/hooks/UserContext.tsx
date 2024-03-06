@@ -18,17 +18,23 @@ export const UserProvider: React.FC<UserContextProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Store the fetched user data in localStorage
-  if (typeof window !== 'undefined') { // Check if in browser environment
-    const storedUser = localStorage.getItem('userData');
+  // Check for localStorage and get userData if there is any
+  const handleUserData = () => {
+    if (typeof window !== 'undefined') {
+      const storedUser = localStorage.getItem('userData');
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+        setIsLoading(false);
+      }
+    }
+  };
 
+  //handleUserData within useEffect
   useEffect(() => {
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-      setIsLoading(false);
-    } else {
-      const currentUser = auth.currentUser;
+    handleUserData(); // Load user data from localStorage if available
 
+    // Fetch user data from database if not in localStorage or user changes
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
       if (currentUser) {
         const userRef = ref(getDatabase(), `users/${currentUser.uid}`);
         get(userRef)
@@ -51,12 +57,13 @@ export const UserProvider: React.FC<UserContextProps> = ({ children }) => {
       } else {
         setIsLoading(false);
       }
-    }
-  }, [auth]);
-}
+    });
 
+    return unsubscribe; // Clean up event listener on unmount
+  }, [auth]);
+
+  // Cleanup function to remove user data from localStorage when unmounting
   useEffect(() => {
-    // Cleanup function to remove user data from localStorage when unmounting
     return () => localStorage.removeItem('userData');
   }, []);
 

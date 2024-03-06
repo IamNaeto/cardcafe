@@ -1,13 +1,8 @@
 import Image from "next/image";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "@/app/firebase/config";
 interface props {
     user: any
 }
 const UserInfo:React.FC<props> = ({user}) => {
-    const [LoggedInUser] = useAuthState(auth);
-
-    console.log([LoggedInUser])
     return ( 
         <main className="flex flex-col md:flex-row items-center justify-between gap-5 text-[#0F0F0F] p-5 rounded-xl bg-[#fff]">
             <section className="flex flex-col md:flex-row items-center justify-center gap-4">
