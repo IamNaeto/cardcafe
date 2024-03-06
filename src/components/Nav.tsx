@@ -10,6 +10,9 @@ import { AiOutlineLogout } from "react-icons/ai";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { auth } from "@/app/firebase/config";
+import { signOut } from "firebase/auth";
+import { useRouter } from 'next/navigation';
 
 interface props {
     menu: boolean;
@@ -22,6 +25,7 @@ const Nav: React.FC<props> = ({ menu, setMenu, title, user, }) => {
 
     const [dropDown, setDropDown] = useState(false)
     const [notification, setNotification] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
 
     const toggleSideBar = () => {
         setMenu(!menu);
@@ -36,6 +40,25 @@ const Nav: React.FC<props> = ({ menu, setMenu, title, user, }) => {
         setDropDown(false)
     };
 
+    // Signout logics
+    const router = useRouter()
+    let userLoggedIn
+
+    if (typeof window !== 'undefined') {
+        userLoggedIn = localStorage.getItem('user');
+    }
+
+    const handleSignOut = () => {
+        setIsLoading(true)
+
+        setTimeout(() => {
+            setIsLoading(false)
+            signOut(auth)
+            localStorage.removeItem('user')
+            router.replace("/");
+        }, 2000);
+    }
+
     return (
         <main className="relative flex items-center justify-between gap-4 py-4">
             <div className="flex items-center justify-center gap-4">
@@ -44,13 +67,13 @@ const Nav: React.FC<props> = ({ menu, setMenu, title, user, }) => {
             </div>
 
             <div className="relative flex items-center justify-center gap-4 text-[#0F0F0F]">
-                <GoBell className="text-2xl" cursor="pointer" onClick={toggleNotification}/>
+                <GoBell className="text-2xl" cursor="pointer" onClick={toggleNotification} />
                 <Image src={"/img/user-avatar.png"} width={40} height={40} alt="user" />
                 <h1 className="text-[14px] md:text-[16px]">{user?.firstName} {user?.lastName}</h1>
                 {dropDown ?
-                <IoIosArrowUp className="text-2xl" cursor="pointer" onClick={toggleDropDown}/>
-                :
-                <IoIosArrowDown className="text-2xl" cursor="pointer" onClick={toggleDropDown}/>
+                    <IoIosArrowUp className="text-2xl" cursor="pointer" onClick={toggleDropDown} />
+                    :
+                    <IoIosArrowDown className="text-2xl" cursor="pointer" onClick={toggleDropDown} />
                 }
 
                 <div className={`${dropDown ? "absolute" : "hidden"} grid gap-4 top-12 left-0 rounded-2xl bg-[#fff] border border-orange shadow-2xl py-4 px-2`}>
@@ -66,7 +89,17 @@ const Nav: React.FC<props> = ({ menu, setMenu, title, user, }) => {
                         <Link href={"/cardlibrary"} className="flex items-center gap-2 hover:text-orange transition-all delay-150"> <FaCcMastercard className="text-xl text-orange" /> Card Library</Link>
                         <Link href={"/documentation"} className="flex items-center gap-2 hover:text-orange transition-all delay-150"> <IoDocumentTextOutline className="text-xl text-orange" />Documentation</Link>
                         <Link href={"/generate"} className="flex items-center  gap-2 hover:text-orange transition-all delay-150"> <RiAiGenerate className="text-xl text-orange" /> Card Gen</Link>
-                        <button className="flex items-center  gap-2 hover:text-orange transition-all delay-150 cursor-pointer"> <AiOutlineLogout className="text-xl text-orange" /> Logout</button>
+                        <button
+                            className="flex items-center  gap-2 hover:text-orange transition-all delay-150 cursor-pointer"
+                            onClick={handleSignOut}
+                        >
+                            <AiOutlineLogout className="text-xl text-orange" />
+                            {isLoading ? (
+                                'Signing Out...'
+                            ) : (
+                                'Sign Out'
+                            )}
+                        </button>
                     </div>
                 </div>
 

@@ -27,12 +27,13 @@ const Sign_In = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential);
+        // console.log(userCredential);
+        localStorage.setItem('user', "loggedIn");
         toast.success("Login successful")
         setIsLoading(false)
         setTimeout(() => {
-          router.replace("/dashboard");
-        }, 3000);
+          router.replace("/generate");
+        }, 2000);
       })
 
       .catch((error) => {

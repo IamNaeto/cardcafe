@@ -48,7 +48,7 @@ const SignUp = () => {
     // Save user data to Firebase Realtime Database
     const userRef = ref(database, `users/${user.uid}`);
     await set(userRef, user);
-    console.log(userCredential);
+    // console.log(userCredential);
     toast.success("Account created successfully");
     setTimeout(() => {
       setIsLoading(false);
