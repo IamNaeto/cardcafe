@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
-import { BiLoaderCircle } from "react-icons/bi";
+import { LuLoader2 } from "react-icons/lu";
 
 const Sign_In = () => {
     const [email, setEmail] = useState("");
@@ -29,8 +29,9 @@ const Sign_In = () => {
       .then((userCredential) => {
         console.log(userCredential);
         toast.success("Login successful")
+        setIsLoading(false)
         setTimeout(() => {
-          router.replace("/create");
+          router.replace("/dashboard");
         }, 3000);
       })
 
@@ -105,7 +106,7 @@ const Sign_In = () => {
                     >
                         {isLoading ? (
                             <>
-                                <BiLoaderCircle  className="animate-spin text-white text-2xl text-center font-semibold" />
+                                <LuLoader2  className="animate-spin text-white text-2xl text-center font-semibold" />
                             </>
                         ) : (
                             'Sign In'

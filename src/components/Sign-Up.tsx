@@ -1,13 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { BiLoaderCircle } from "react-icons/bi";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/app/firebase/config';
+// import { auth } from '@/app/firebase/config';
 import { useRouter } from 'next/navigation';
+import { LuLoader2 } from "react-icons/lu";
+import { auth, database } from '@/app/firebase/config'; // Import from config
+import { get, ref, set } from 'firebase/database'; // Import database functions
 
 const SignUp = () => {
     const [email, setEmail] = useState("");
@@ -32,35 +34,47 @@ const SignUp = () => {
   // Simulate a loading process
   setIsLoading(true);
 
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      console.log(userCredential);
-      toast.success("Account created successfully")
-        setTimeout(() => {
-            setIsLoading(false);
-            router.replace("/signin");
-        }, 3000);
-    })
-    .catch((error) => {
-      console.log("Registration error:", error);
-      if (error.code === "auth/wrong-password") {
-        toast.error("Incorrect password");
-        setIsLoading(false);
-      } else if (error.code === "auth/invalid-email") {
-        toast.error("Invalid Email format");
-        setIsLoading(false);
-      } else if (error.code === "auth/weak-password") {
-        toast.error("Password should be at least 6 characters");
-        setIsLoading(false);
-      } else if (error.code === "auth/email-already-in-use") {
-        toast.error("Email already in use");
-        setIsLoading(false);
-      } else {
-        toast.error(error.code);
-        setIsLoading(false);
-        return;
-      }
-    });
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+    // Create a new user object with profile data
+    const user = {
+      uid: userCredential.user.uid,
+      firstName,
+      lastName,
+      email,
+    };
+
+    // Save user data to Firebase Realtime Database
+    const userRef = ref(database, `users/${user.uid}`);
+    await set(userRef, user);
+    console.log(userCredential);
+    toast.success("Account created successfully");
+    setTimeout(() => {
+      setIsLoading(false);
+      router.replace("/signin");
+    }, 3000);
+  } catch (error) {
+    console.error("Registration error:", error);
+    toast.error(handleError(error));
+    setIsLoading(false);
+  }
+};
+
+// Function to handle and display authentication errors
+const handleError = (error:any) => {
+  switch (error.code) {
+    case "auth/wrong-password":
+      return "Incorrect password";
+    case "auth/invalid-email":
+      return "Invalid email format";
+    case "auth/weak-password":
+      return "Password should be at least 6 characters";
+    case "auth/email-already-in-use":
+      return "Email already in use";
+    default:
+      return error.message;
+  }
 
 };
     return (
@@ -138,7 +152,7 @@ const SignUp = () => {
                     >
                         {isLoading ? (
                             <>
-                                <BiLoaderCircle  className="animate-spin text-white text-2xl text-center font-semibold" />
+                                <LuLoader2  className="animate-spin text-white text-2xl text-center font-semibold" />
                             </>
                         ) : (
                             'Sign In'

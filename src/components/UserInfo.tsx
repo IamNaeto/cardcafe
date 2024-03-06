@@ -1,11 +1,19 @@
 import Image from "next/image";
-const UserInfo = () => {
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/app/firebase/config";
+interface props {
+    user: any
+}
+const UserInfo:React.FC<props> = ({user}) => {
+    const [LoggedInUser] = useAuthState(auth);
+
+    console.log([LoggedInUser])
     return ( 
         <main className="flex flex-col md:flex-row items-center justify-between gap-5 text-[#0F0F0F] p-5 rounded-xl bg-[#fff]">
             <section className="flex flex-col md:flex-row items-center justify-center gap-4">
                 <Image src={"/img/user-avatar.png"} width={70} height={70} alt="user avatar"/>
                 <div className="flex flex-col gap-2">
-                    <h1 className="text-[16px] md:text-[18px] font-bold text-center md:text-left">Hello, Annabel Monday</h1>
+                    <h1 className="text-[16px] md:text-[18px] font-bold text-center md:text-left">Hello, {user?.firstName} {user?.lastName}</h1>
                     <p className="text-[12px] md:text-[14px] font-normal text-center md:text-left">Welcome back</p>
                 </div>
             </section>

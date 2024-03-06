@@ -4,6 +4,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import html2canvas from "html2canvas";
 import JSZip from 'jszip';
+import CardFront from "./CardFront";
+import { useUser } from "@/app/hooks/UserContext";
 
 const CardGen = () => {
     const [cardBg, setCardBg] = useState<string>('from-orange to-yellow');
@@ -12,6 +14,8 @@ const CardGen = () => {
     const [generatedCVV, setGeneratedCVV] = useState<string | null>(null);
     const [showGeneratedDetails, setShowGeneratedDetails] = useState(false);
     const [selectedCardTypeBeforeGenerate, setSelectedCardTypeBeforeGenerate] = useState<string | null>(null);
+
+    const { user } = useUser()
 
     const handleSmallDivClick = (bgClass: string) => {
         setCardBg(bgClass);
@@ -140,24 +144,8 @@ const CardGen = () => {
     return (
         <main className="relative top-[60px] sm:top-[70px] px-[5%] py-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
             <section className="text-[14px] md:text-[16px] bg-[#F8F8F8] p-3 sm:p-6 md:p-10 rounded-2xl grid gap-4">
-                <div id="card-front" className={`bg-gradient-to-br ${cardBg} p-4 sm:p-6 rounded-2xl min-h-[300px] text-white relative`}>
-                    <div className="flex items-end justify-end">
-                        <Image src={"/img/cardicon.png"} width={50} height={50} alt="cardicon" loading="lazy" className="mb-4" />
-                    </div>
-
-                    <div className="grid gap-8">
-                        <h1 className="text-[24px] md:text-[28px] font-medium">Card Holder’s Name</h1>
-                        <h2 className="text-[18px] md:text-[22px]">{generatedCardNumber ? generatedCardNumber : 'xxxx    xxxx    xxxx    xxxx'}</h2>
-                        <Image src={"/img/cardchip.png"} width={50} height={50} alt="cardicon" loading="lazy" />
-                    </div>
-
-                    {showGeneratedDetails && (
-                        <div className="flex items-center justify-between gap-4 text-white mt-5">
-                            <p>Expiry Date: {new Date(new Date().setFullYear(new Date().getFullYear() + 4)).toLocaleDateString()}</p>
-                            <Image src={getCardImage()} width={50} height={50} alt="" loading="lazy" />
-                        </div>
-                    )}
-                </div>
+                
+                <CardFront cardBg={cardBg} generatedCardNumber={generatedCardNumber} showGeneratedDetails={showGeneratedDetails} getCardImage={getCardImage} user={user} />
 
                 <p className="text-center leading-relaxed tracking-wide font-bold">Credit Card Front View</p>
 

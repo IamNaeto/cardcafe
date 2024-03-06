@@ -1,4 +1,7 @@
-const UserDetails = () => {
+interface detailsProps {
+    user: any
+}
+const UserDetails:React.FC<detailsProps> = ({user}) => {
     return (
         <main className="w-full xl:w-auto grid gap-4 bg-[#fff] p-10 rounded-xl text-[14px] md:text-[16px] font-medium">
             <h1 className="text-[18px] md:text-[24px] font-bold">User Details</h1>
@@ -6,16 +9,16 @@ const UserDetails = () => {
             <form action="" className="grid gap-6 w-full">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <label htmlFor="">First Name
-                        <input type="text" value={"Annabel"} className="input" disabled/>
+                        <input type="text" value={user?.firstName} className="input" disabled/>
                     </label>
 
                     <label htmlFor="">Last Name
-                        <input type="text" value={"Monday"} className="input" disabled/>
+                        <input type="text" value={user?.lastName} className="input" disabled/>
                     </label>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <label htmlFor="">Email Address
-                        <input type="email" value={"annabeltwayne97@gmail.com"} className="input" disabled/>
+                        <input type="email" value={user?.email} className="input" disabled/>
                     </label>
 
                     <label htmlFor="">Phone Number
