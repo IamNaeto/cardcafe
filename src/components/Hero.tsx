@@ -4,7 +4,7 @@ import ControlBtn from "./ControlBtn";
 
 const Hero = () => {
     return (
-        <main className="relative grid gap-5 hero-bg px-[5%] py-14 pt-[80px] md:pt-[120px]">
+        <main className="relative min-h-screen grid gap-5 hero-bg px-[5%] py-14 pt-[80px] md:pt-[120px]">
             <section className="grid grid-cols-1 md:grid-cols-2 justify-between items-center gap-5">
                 <div className="flex flex-col justify-center md:justify-center gap-4 text-[14px] md:text-[16px] text-center md:text-left text-dark font-normal">
                     <h1 className="text-[48px] lg:text-[56px] font-extrabold">Create Test Credit Cards Samples</h1>

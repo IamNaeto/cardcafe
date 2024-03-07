@@ -75,7 +75,7 @@ const Header = () => {
       <nav className="w-full flex flex-col md:flex-row items-start md:items-center justify-between px-0 md:px-[5%] py-3">
         <div className="w-full md:w-auto flex items-center justify-between px-[5%] md:px-0">
           <Link href={"/"}>
-            <Image src={"/img/logo.png"} width={60} height={60} alt="logo" loading="lazy" className="w-full" />
+            <Image src={"/img/logo.png"} width={70} height={70} alt="logo" loading="lazy" className="w-full" />
           </Link>
           {isMenuOpen ?
             <RiCloseCircleLine className="text-4xl text-yellow block md:hidden cursor-pointer" onClick={toggleMenu} />
@@ -87,7 +87,7 @@ const Header = () => {
         <div className={`${isMenuOpen ? "flex" : "hidden"} w-full md:w-auto backdrop-blur-lg md:backdrop-blur-0 pb-5 md:pb-0 md:flex flex-col md:flex-row items-center justify-center gap-6 lg:gap-10 text-[14px] md:text-[16px] text-dark font-normal`}>
           <Link href="/" className={pathName === "/" ? "visited:text-orange transition-all delay-150" : "hover:text-yellow transition-all delay-150"} >Home</Link>
           <Link href="/cardlibrary" className={pathName === "/cardlibrary" ? "visited:text-orange transition-all delay-150" : "hover:text-yellow transition-all delay-150"}>Card Library</Link>
-          <Link href="/documentation" className={pathName === "/documentation" ? "visited:text-orange transition-all delay-150" : "hover:text-yellow transition-all delay-150"}>Documentations</Link>
+          <Link href="/documentation" className={pathName === "/documentation" ? "visited:text-orange transition-all delay-150" : "hover:text-yellow transition-all delay-150"}>Documentation</Link>
 
           <div className="flex items-center justify-center gap-2 md:gap-4">
             {user && userLoggedIn === 'loggedIn' ? (

@@ -45,10 +45,10 @@ const Sign_In = () => {
           toast.error("Invalid Email format");
           setIsLoading(false);
         } else if (error.code === "auth/invalid-login-credentials") {
-          toast.error("Invalid login credentials, register");
+          toast.error("Invalid login credentials, sign up");
           setIsLoading(false);
         } else if (error.code === "auth/invalid-credential") {
-          toast.error("Invalid-credential, register");
+          toast.error("Invalid-credential, review details or sign up");
           setIsLoading(false);
         } else if (error.code === "auth/too-many-requests") {
           toast.error("Too-many-requests, try in the next 2mins");
@@ -87,7 +87,7 @@ const Sign_In = () => {
                         name="email" 
                         id="email" 
                         type="email" 
-                        placeholder="user@gmail.com"
+                        placeholder="Enter Your Email Address"
                         onChange={(e) => setEmail(e.target.value)} 
                         className="input" />
                     </label>

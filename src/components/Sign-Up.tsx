@@ -84,7 +84,7 @@ const handleError = (error:any) => {
                     <h1 className="text-[36px] sm:text-[38px] md:text-[48px] font-bold">Create your free account</h1>
                     <p className="w-full lg:w-[80%] leading-relaxed tracking-wide">Do so much more when you create an account on card cafe. Sign up now and start enjoying unlimited features.</p>
 
-                    <Link href={"/"} className="flex items-center gap-2 hover:gap-4 transition-all delay-150 text-yellow">Read Documentation <FaArrowRightLong /></Link>
+                    <Link href={"/documentation"} className="flex items-center gap-2 hover:gap-4 transition-all delay-150 text-yellow">Read Documentation <FaArrowRightLong /></Link>
                 </div>
 
                 <div className="hidden md:block">

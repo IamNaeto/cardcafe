@@ -7,7 +7,7 @@ interface profileProps{
  
 const Profile:React.FC<profileProps> = ({user}) => {
     return ( 
-        <main className="flex flex-col xl:flex-row items-center gap-10">
+        <main className="flex flex-col xl:flex-row items-center gap-5">
             <User user={user}/>
             <UserDetails user={user}/>
         </main>
