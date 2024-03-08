@@ -3,7 +3,7 @@ interface detailsProps {
 }
 const UserDetails:React.FC<detailsProps> = ({user}) => {
     return (
-        <main className="w-full xl:w-auto grid gap-4 bg-[#fff] p-10 rounded-xl text-[14px] md:text-[16px] font-medium">
+        <main className="w-full xl:w-auto h-full grid gap-4 bg-[#fff] p-10 rounded-xl text-[14px] md:text-[16px] font-medium">
             <h1 className="text-[18px] md:text-[24px] font-bold">User Details</h1>
 
             <form action="" className="grid gap-6 w-full">

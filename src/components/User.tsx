@@ -7,7 +7,13 @@ interface userProps {
 const User:React.FC<userProps> = ({user}) => {
     return ( 
         <main className="w-full xl:w-auto flex flex-col h-full items-center justify-center gap-4 bg-[#fff] p-10 rounded-xl text-[#0F0F0F] text-center">
-                <Image src={"/img/avatar.png"} width={200} height={200} alt="user avatar"/>
+                {user?.img ? (
+                    <Image src={user?.img} width={200} height={200} alt="user" className="rounded-full"/>
+                ) : (
+                    <h1 className="text-8xl font-extrabold px-12 py-14 rounded-full border-4 border-orange text-orange">
+                        {user?.firstName?.charAt(0)}{user?.lastName?.charAt(0)}
+                    </h1>
+                )}
                 <h1 className="text-[18px] md:text-[24px] font-bold">{user?.firstName} {user?.lastName}</h1>
                 <p className="text-[14px] md:text-[16px] font-normal">{user?.email}</p>
                 <div className="flex items-center">

@@ -167,7 +167,7 @@ const handleError = (error:any) => {
                                 <LuLoader2  className="animate-spin text-white text-2xl text-center font-semibold" />
                             </>
                         ) : (
-                            'Sign In'
+                            'Sign Up'
                         )}
                     </button>
 

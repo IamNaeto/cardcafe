@@ -68,17 +68,29 @@ const Nav: React.FC<props> = ({ menu, setMenu, title, user, }) => {
 
             <div className="relative flex items-center justify-center gap-4 text-[#0F0F0F]">
                 <GoBell className="text-2xl" cursor="pointer" onClick={toggleNotification} />
-                <Image src={"/img/user-avatar.png"} width={40} height={40} alt="user" />
-                <h1 className="text-[14px] md:text-[16px]">{user?.userName}</h1>
+                {user?.img ? (
+                    <Image src={user?.img} width={40} height={40} alt="user" className="rounded-full"/>
+                ) : (
+                    <h1 className="text-[18px] font-bold px-2 py-[6px] rounded-full border-[3px] border-orange text-orange">
+                        {user?.firstName?.charAt(0)}{user?.lastName?.charAt(0)}
+                    </h1>
+                )}
+                <h1 className="text-[14px] md:text-[16px] font-bold">{user?.userName}</h1>
                 {dropDown ?
                     <IoIosArrowUp className="text-2xl" cursor="pointer" onClick={toggleDropDown} />
                     :
                     <IoIosArrowDown className="text-2xl" cursor="pointer" onClick={toggleDropDown} />
                 }
 
-                <div className={`${dropDown ? "absolute" : "hidden"} grid gap-4 top-12 left-0 min-w-[230px]  rounded-2xl bg-[#fff] border border-orange shadow-2xl py-4 px-2`}>
+                <div className={`${dropDown ? "absolute" : "hidden"} grid gap-4 top-12 left-0 rounded-2xl bg-[#fff] border border-orange shadow-2xl py-4 px-2`}>
                     <Link href={"/profile"} className="flex items-center justify-center gap-2 pb-2 border-b border-b-orange px-2 overflow-hidden">
-                        <Image src={"/img/avatar.png"} width={70} height={70} alt="user" />
+                        {user?.img ? (
+                            <Image src={user?.img} width={70} height={70} alt="user" className="rounded-full"/>
+                        ) : (
+                            <h1 className="text-[24px] font-bold py-2 px-3 rounded-full border-[3px] border-orange text-orange">
+                                {user?.firstName?.charAt(0)}{user?.lastName?.charAt(0)}
+                            </h1>
+                        )}
                         <div className="overflow-hidden">
                             <h1 className="text-[14px] md:text-[16px] font-bold">{user?.firstName} {user?.lastName}</h1>
                             <p className="text-[10px] md:text-[12px]">{user?.email}</p>
