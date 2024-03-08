@@ -39,7 +39,7 @@ const ControlBtn: React.FC<ControlBtnProps> = ({ caption }) => {
 
     return (
         <button
-            className="bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 w-[200px] px-5 py-3 rounded-md text-white flex items-center justify-center"
+            className={`bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 w-[200px] px-5 py-3 rounded-md text-white flex items-center justify-center ${isLoading ? "cursor-not-allowed" : "cursor-pointer"}`}
             onClick={handleGetStarted}
         >
             {isLoading ? (

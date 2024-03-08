@@ -29,11 +29,11 @@ const Sign_In = () => {
       .then((userCredential) => {
         // console.log(userCredential);
         localStorage.setItem('user', "loggedIn");
-        toast.success("Login successful")
         setIsLoading(false)
         setTimeout(() => {
+          toast.success("Login successful")
           router.replace("/generate");
-        }, 2000);
+        }, 3000);
       })
 
       .catch((error) => {
