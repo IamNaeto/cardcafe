@@ -17,13 +17,14 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [userName, setUserName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter()
   const handleSignUp = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
-  if (!firstName || !lastName || !email || !password || !confirmPassword) {
+  if (!firstName || !lastName || !userName || !email || !password || !confirmPassword) {
     toast.error("All fields are required.")
     return;
   } else if(password !== confirmPassword){
@@ -42,6 +43,7 @@ const SignUp = () => {
       uid: userCredential.user.uid,
       firstName,
       lastName,
+      userName,
       email,
     };
 
@@ -112,6 +114,16 @@ const handleError = (error:any) => {
                         type="text" 
                         placeholder="Last Name"
                         onChange={(e) => setLastName(e.target.value)} 
+                        className="input"
+                        required />
+                    </label>
+                    <label htmlFor="username">User Name
+                        <input 
+                        name="username" 
+                        id="username" 
+                        type="text" 
+                        placeholder="User Name"
+                        onChange={(e) => setUserName(e.target.value)} 
                         className="input"
                         required />
                     </label>
