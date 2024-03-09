@@ -28,12 +28,12 @@ const ControlBtn: React.FC<ControlBtnProps> = ({ caption }) => {
             setTimeout(() => {
                 setIsLoading(false);
                 router.replace("/generate");
-            }, 2000);
+            }, 1000);
         } else {
             setTimeout(() => {
                 setIsLoading(false);
                 router.replace("/signin");
-            }, 2000);
+            }, 1000);
         }
     };
 

@@ -8,30 +8,30 @@ const UserDetails:React.FC<detailsProps> = ({user}) => {
 
             <form action="" className="grid gap-6 w-full">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <label htmlFor="">First Name
-                        <input type="text" value={user?.firstName} className="input" disabled/>
+                    <label htmlFor="fname">First Name
+                        <input type="text" value={user?.firstName} className="input" disabled id="fname"/>
                     </label>
 
-                    <label htmlFor="">Last Name
-                        <input type="text" value={user?.lastName} className="input" disabled/>
+                    <label htmlFor="lname">Last Name
+                        <input type="text" value={user?.lastName} className="input" disabled id="lname"/>
                     </label>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <label htmlFor="">Email Address
-                        <input type="email" value={user?.email} className="input" disabled/>
+                    <label htmlFor="email">Email Address
+                        <input type="email" value={user?.email} className="input" disabled id="email"/>
                     </label>
 
-                    <label htmlFor="">Phone Number
-                        <input type="text" value={"+2348147371491"} className="input" disabled/>
+                    <label htmlFor="usern">Username
+                        <input type="text" value={user?.userName} className="input" disabled id="usern"/>
                     </label>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <label htmlFor="">Username
-                        <input type="text" value={"Annabella"} className="input" disabled/>
+                    <label htmlFor="phone">Phone Number
+                        <input type="text" value={"+2348147371491"} className="input" disabled id="phone"/>
                     </label>
 
-                    <label htmlFor="">Residential Address
-                        <input type="text" value={"Lagos, Nigeria"} className="input" disabled/>
+                    <label htmlFor="address">Residential Address
+                        <input type="text" value={"Lagos, Nigeria"} className="input" disabled id="address"/>
                     </label>
                 </div>
 
