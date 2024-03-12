@@ -6,6 +6,16 @@ import html2canvas from "html2canvas";
 import JSZip from 'jszip';
 import CardFront from "./CardFront";
 import { useUser } from "@/app/hooks/UserContext";
+import { ref, set, child, update } from "firebase/database"; // Firebase imports
+import { auth, app, database } from "@/app/firebase/config";
+
+
+interface CardData {
+    cardNumber: string | null;
+    cardCVV: string | null;
+    cardType: string | null;
+    date: string; // Date in string format for Realtime Database
+}
 
 const CardGen = () => {
     const [cardBg, setCardBg] = useState<string>('from-orange to-yellow');
@@ -25,38 +35,54 @@ const CardGen = () => {
         return Math.floor(Math.random() * Math.pow(10, length)).toString().padStart(length, '0');
     };
 
-    const handleGenerateClick = () => {
+    const handleGenerateClick = async () => {
         if (!selectedCardType) {
             toast.error("Please select a card type");
             return;
         }
 
+        const cardData: CardData = {
+            cardNumber: null,
+            cardCVV: null,
+            cardType: selectedCardType,
+            date: new Date().toLocaleDateString('en-US', {  // Use toLocaleDateString
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            }),
+        };
+
         if (selectedCardType === "Visa") {
-            setGeneratedCardNumber(`4${getRandomDigits(15)}`);
-            setGeneratedCVV(getRandomDigits(3));
-            setSelectedCardTypeBeforeGenerate(selectedCardType);
-            setShowGeneratedDetails(true);
-            toast.success("Visa card generated successfully");
+            cardData.cardNumber = `4${getRandomDigits(15)}`;
+            cardData.cardCVV = getRandomDigits(3);
         } else if (selectedCardType === "Mastercard") {
-            setGeneratedCardNumber(`5${getRandomDigits(15)}`);
-            setGeneratedCVV(getRandomDigits(3));
-            setSelectedCardTypeBeforeGenerate(selectedCardType);
-            setShowGeneratedDetails(true);
-            toast.success("Mastercard card generated successfully");
+            cardData.cardNumber = `5${getRandomDigits(15)}`;
+            cardData.cardCVV = getRandomDigits(3);
         } else if (selectedCardType === "Verve") {
-            setGeneratedCardNumber(`6${getRandomDigits(15)}`);
-            setGeneratedCVV(getRandomDigits(3));
-            setSelectedCardTypeBeforeGenerate(selectedCardType);
-            setShowGeneratedDetails(true);
-            toast.success("Verve card generated successfully");
-        } else {
-            setGeneratedCardNumber(null);
-            setGeneratedCVV(null);
-            setSelectedCardTypeBeforeGenerate(null);
-            setShowGeneratedDetails(false);
-            toast.error("Please select a valid card brand to generate");
+            cardData.cardNumber = `6${getRandomDigits(15)}`;
+            cardData.cardCVV = getRandomDigits(3);
         }
 
+        setGeneratedCardNumber(cardData.cardNumber);
+        setGeneratedCVV(cardData.cardCVV);
+        setSelectedCardTypeBeforeGenerate(selectedCardType);
+        setShowGeneratedDetails(true);
+        toast.success("Card generated successfully");
+
+        // Update user's data in Realtime Database (if user is logged in)
+        if (user) {
+            const userRef = ref(database, `users/${user.uid}/generatedCards`);
+            try {
+                const newCardKey = `${Date.now()}`; // Use a unique key based on timestamp
+                await update(userRef, {
+                    [newCardKey]: cardData,
+                });
+                toast.success("Update successful")
+            } catch (error) {
+                console.error("Error adding card data to Realtime Database:", error);
+                toast.error("Failed to save card details. Please try again.");
+            }
+        }
     };
 
     const getCardImage = () => {
@@ -85,6 +111,42 @@ const CardGen = () => {
             toast.error("Please generate a card before downloading");
             return;
         }
+
+        const cardData: CardData = {
+            cardNumber: null,
+            cardCVV: null,
+            cardType: selectedCardType,
+            date: new Date().toLocaleDateString('en-US', {  // Use toLocaleDateString
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            }),
+        };
+
+        // Update user's data in Realtime Database (if user is logged in)
+        if (user) {
+            const userRef = ref(database, `users/${user.uid}/downloadedCards`);
+            try {
+                const newCardKey = `${Date.now()}`; // Use a unique key based on timestamp
+                await update(userRef, {
+                    [newCardKey]: {
+                        cardNumber: generatedCardNumber, // Use existing state
+                        cardCVV: generatedCVV, // Use existing state
+                        cardType: selectedCardType,
+                        date: new Date().toLocaleDateString('en-US', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric'
+                        }),
+                    },
+                });
+                toast.success("Update successful");
+            } catch (error) {
+                console.error("Error adding card data to Realtime Database:", error);
+                toast.error("Failed to save card details. Please try again.");
+            }
+        }
+
 
         // Get references to the card front and back elements
         const cardFront = document.getElementById("card-front");
@@ -138,13 +200,14 @@ const CardGen = () => {
                 toast.error("Failed to download card images. Please try again.");
             }
         }
+
     };
 
 
     return (
         <main className="relative top-[60px] sm:top-[70px] px-[5%] py-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
             <section className="text-[14px] md:text-[16px] bg-[#F8F8F8] p-3 sm:p-6 md:p-10 rounded-2xl grid gap-4">
-                
+
                 <CardFront cardBg={cardBg} generatedCardNumber={generatedCardNumber} showGeneratedDetails={showGeneratedDetails} getCardImage={getCardImage} user={user} />
 
                 <p className="text-center leading-relaxed tracking-wide font-bold">Credit Card Front View</p>

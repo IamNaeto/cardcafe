@@ -38,18 +38,20 @@ const ControlBtn: React.FC<ControlBtnProps> = ({ caption }) => {
     };
 
     return (
-        <button
-            className={`bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 w-[200px] px-5 py-3 rounded-md text-white flex items-center justify-center ${isLoading ? "cursor-not-allowed" : "cursor-pointer"}`}
-            onClick={handleGetStarted}
-        >
-            {isLoading ? (
-                <>
-                    <LuLoader2 className="animate-spin text-white text-2xl text-center font-semibold" />
-                </>
-            ) : (
-                caption
-            )}
-        </button>
+        <main className="flex items-center md:items-start justify-center md:justify-start">
+            <button
+                className={`bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 w-[200px] px-5 py-3 rounded-md text-white flex items-center justify-center ${isLoading ? "cursor-not-allowed" : "cursor-pointer"}`}
+                onClick={handleGetStarted}
+            >
+                {isLoading ? (
+                    <>
+                        <LuLoader2 className="animate-spin text-white text-2xl text-center font-semibold" />
+                    </>
+                ) : (
+                    caption
+                )}
+            </button>
+        </main>
     );
 };
 
