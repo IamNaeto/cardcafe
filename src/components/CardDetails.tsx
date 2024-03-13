@@ -27,27 +27,27 @@ const CardDetails: React.FC<props> = ({ title, type, cardType, user }) => {
   useEffect(() => {
     const fetchCards = async () => {
       setIsLoading(true); // Set loading to true before fetching
-
+  
       if (user) {
         const userRef = ref(database, `users/${user.uid}/${cardType}`);
         try {
           const snapshot = await get(userRef); // Fetch user's cards
           const data = snapshot.val(); // Get data as an object
           if (data) {
-            const cardArray = Object.values(data); // Convert object to array
+            const cardArray: CardData[] = Object.values(data) as CardData[]; // Explicitly cast to CardData[]
             setFetchedCards(cardArray);
           } else {
             setFetchedCards([]); // Set to empty array if no data
           }
         } catch (error) {
-          console.error(`Error fetching ${cardType.toLocaleLowerCase()}:`, error);
           // Handle errors appropriately (e.g., display error message)
+          console.error(`Error fetching ${cardType.toLocaleLowerCase()}:`, error);
         } finally {
           setIsLoading(false); // Set loading to false after fetching
         }
       }
     };
-
+  
     fetchCards(); // Call fetchCards on component mount
   }, [user, cardType]); // Re-run useEffect on user or cardType change
 
