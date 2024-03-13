@@ -77,10 +77,9 @@ const CardGen = () => {
                 await update(userRef, {
                     [newCardKey]: cardData,
                 });
-                toast.success("Update successful")
             } catch (error) {
                 console.error("Error adding card data to Realtime Database:", error);
-                toast.error("Failed to save card details. Please try again.");
+                toast.error("Failed to save card details to database. Check console.");
             }
         }
     };
@@ -140,10 +139,9 @@ const CardGen = () => {
                         }),
                     },
                 });
-                toast.success("Update successful");
             } catch (error) {
                 console.error("Error adding card data to Realtime Database:", error);
-                toast.error("Failed to save card details. Please try again.");
+                toast.error("Failed to save card details to database. Please check console.");
             }
         }
 
@@ -188,7 +186,6 @@ const CardGen = () => {
 
                 // Show success message on download completion
                 toast.success("Card images downloaded successfully!");
-                toast.success("Card details reset successfully.");
 
                 // Reset card details
                 setGeneratedCardNumber(null);
