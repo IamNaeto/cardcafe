@@ -19,7 +19,7 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ menu, setMenu }) => {
       <Nav menu={menu} setMenu={setMenu} title={'Dashbord'} user={user} />
       <UserInfo user={user} />
       <Statistics user={user} />
-      <CardDetails title={'Recent Generated Cards'} type={'Date Generated'} cardType={'generatedCards'} user={user} />
+      <CardDetails title={'Recent Generated Cards'} cardType={'generatedCards'} user={user} />
     </main>
   );
 };

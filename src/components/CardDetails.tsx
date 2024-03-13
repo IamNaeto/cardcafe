@@ -2,32 +2,35 @@ import { database } from "@/app/firebase/config";
 import { get, ref } from "firebase/database";
 import { useEffect, useState } from "react";
 import { LuLoader2 } from "react-icons/lu";
+import { usePathname } from "next/navigation";
 
 // Interface for props passed to the component
 interface props {
   title: string;
-  type: string;
   cardType: string;
   user: any;
 }
 
 interface CardData {
-    cardNumber: string | null;
-    cardCVV: string | null;
-    cardType: string;
-    date: string;
-  }
+  cardNumber: string | null;
+  cardCVV: string | null;
+  cardType: string;
+  date: string;
+}
 
-const CardDetails: React.FC<props> = ({ title, type, cardType, user }) => {
+const CardDetails: React.FC<props> = ({ title, cardType, user }) => {
   // State variables
   const [fetchedCards, setFetchedCards] = useState<CardData[]>([]); // Array to store fetched cards
   const [isLoading, setIsLoading] = useState(true); // Loading state
+
+  const pathName = usePathname()
+  const isDashboardRoute = pathName === '/dashboard';
 
   // Fetch data based on cardType
   useEffect(() => {
     const fetchCards = async () => {
       setIsLoading(true); // Set loading to true before fetching
-  
+
       if (user) {
         const userRef = ref(database, `users/${user.uid}/${cardType}`);
         try {
@@ -47,7 +50,7 @@ const CardDetails: React.FC<props> = ({ title, type, cardType, user }) => {
         }
       }
     };
-  
+
     fetchCards(); // Call fetchCards on component mount
   }, [user, cardType]); // Re-run useEffect on user or cardType change
 
@@ -70,17 +73,29 @@ const CardDetails: React.FC<props> = ({ title, type, cardType, user }) => {
             <h1 className="w-[150px]">Card Name</h1>
             <h1 className="w-[100px]">Card CVV</h1>
             <h1 className="w-[200px]">Card Number</h1>
-            <h1 className="w-[200px]">{type}</h1>
+            <h1 className="w-[100px]">Date</h1>
           </div>
-          {fetchedCards.map((cardData, index) => (
-            <div key={index} className="text-[14px] md:text-[16px] font-normal flex items-center justify-between">
-              <h1 className="w-[50px] py-2">{index + 1}</h1> {/* Use index for S/N */}
-              <h1 className="w-[150px] py-2">{cardData.cardType}</h1>
-              <h1 className="w-[100px] py-2">{cardData.cardCVV}</h1>
-              <h1 className="w-[200px] py-2">{cardData.cardNumber}</h1>
-              <h1 className="w-[200px] py-2">{cardData.date}</h1>
-            </div>
-          ))}
+          {isDashboardRoute ? (
+            fetchedCards.slice(-5).reverse().map((cardData, index) => (
+              <div key={index} className="text-[14px] md:text-[16px] font-normal flex items-center justify-between">
+                <h1 className="w-[50px] py-2">{index + 1}</h1>
+                <h1 className="w-[150px] py-2">{cardData.cardType}</h1>
+                <h1 className="w-[100px] py-2">{cardData.cardCVV}</h1>
+                <h1 className="w-[200px] py-2">{cardData.cardNumber}</h1>
+                <h1 className="w-[100px] py-2">{cardData.date}</h1>
+              </div>
+            ))
+          ) : (
+            fetchedCards.map((cardData, index) => (
+              <div key={index} className="text-[14px] md:text-[16px] font-normal flex items-center justify-between">
+                <h1 className="w-[50px] py-2">{index + 1}</h1>
+                <h1 className="w-[150px] py-2">{cardData.cardType}</h1>
+                <h1 className="w-[100px] py-2">{cardData.cardCVV}</h1>
+                <h1 className="w-[200px] py-2">{cardData.cardNumber}</h1>
+                <h1 className="w-[100px] py-2">{cardData.date}</h1>
+              </div>
+            ))
+          )}
         </div>
       )}
     </main>
