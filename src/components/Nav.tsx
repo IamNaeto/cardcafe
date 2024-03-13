@@ -21,7 +21,7 @@ interface props {
     user: any
 }
 
-const Nav: React.FC<props> = ({ menu, setMenu, title, user, }) => {
+const Nav: React.FC<props> = ({ menu, setMenu, title, user }) => {
 
     const [dropDown, setDropDown] = useState(false)
     const [notification, setNotification] = useState(false)
@@ -82,8 +82,8 @@ const Nav: React.FC<props> = ({ menu, setMenu, title, user, }) => {
                     <IoIosArrowDown className="text-2xl" cursor="pointer" onClick={toggleDropDown} />
                 }
 
-                <div className={`${dropDown ? "absolute" : "hidden"} grid gap-4 top-12 left-0 rounded-2xl bg-[#fff] border border-orange shadow-2xl py-4 px-2`}>
-                    <Link href={"/profile"} className="flex items-center justify-center gap-2 pb-2 border-b border-b-orange px-2 overflow-hidden">
+                <div className={`${dropDown ? "absolute" : "hidden"} grid gap-4 top-12 left-0 rounded-2xl bg-[#fff] border border-orange shadow-2xl`}>
+                    <Link href={"/profile"} className="flex items-center justify-center gap-2 pb-2 border-b border-b-orange px-2 overflow-hidden bg-[#fff] hover:bg-[#FEF0E8] delay-150 transition-all py-4 rounded-t-2xl">
                         {user?.img ? (
                             <Image src={user?.img} width={70} height={70} alt="user" className="rounded-full"/>
                         ) : (
@@ -96,7 +96,7 @@ const Nav: React.FC<props> = ({ menu, setMenu, title, user, }) => {
                             <p className="text-[10px] md:text-[12px]">{user?.email}</p>
                         </div>
                     </Link>
-                    <div className="grid gap-2 text-[14px] md:text-[16px] font-medium">
+                    <div className="grid gap-2 text-[14px] md:text-[16px] font-medium pb-4 px-2">
                         <Link href={"/"} className="flex items-center gap-4 hover:text-orange transition-all delay-150"> <IoHomeOutline className="text-xl text-orange" /> Home</Link>
                         <Link href={"/cardlibrary"} className="flex items-center gap-2 hover:text-orange transition-all delay-150"> <FaCcMastercard className="text-xl text-orange" /> Card Library</Link>
                         <Link href={"/documentation"} className="flex items-center gap-2 hover:text-orange transition-all delay-150"> <IoDocumentTextOutline className="text-xl text-orange" />Documentation</Link>

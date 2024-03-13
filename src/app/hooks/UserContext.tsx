@@ -2,6 +2,7 @@ import React, { createContext, useContext, ReactNode, useState, useEffect } from
 import { User } from 'firebase/auth';
 import { get, getDatabase, ref } from 'firebase/database';
 import { auth } from '@/app/firebase/config';
+import { LuLoader2 } from 'react-icons/lu';
 
 interface UserContextProps {
   children: ReactNode;
@@ -69,7 +70,15 @@ export const UserProvider: React.FC<UserContextProps> = ({ children }) => {
 
   return (
     <UserContext.Provider value={{ user, isLoading }}>
-      {children}
+      {isLoading ? (
+        <div className="w-full h-screen flex items-center justify-center bg-white text-center">
+          <LuLoader2
+            className="animate-spin text-orange text-7xl font-semibold text-center"
+          />
+        </div>
+      ) : (
+        <>{children}</>
+      )}
     </UserContext.Provider>
   );
 };

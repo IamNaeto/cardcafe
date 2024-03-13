@@ -33,21 +33,21 @@ const SideBar: React.FC<props> = ({ menu, setMenu }) => {
                 </div>
 
                 <div className="text-[#0F0F0F] grid gap-4">
-                    <Link href="/dashboard" className={pathName === "/dashboard" ? "flex items-center gap-4 p-4 bg-orange text-[#fff] transition-all delay-150 cursor-pointer" : "flex items-center gap-4 p-4 hover:bg-orange hover:text-[#fff] transition-all delay-150 cursor-pointer"}>
+                    <Link href="/dashboard" className={pathName === "/dashboard" ? "flex items-center gap-4 p-4 bg-orange text-[#fff] transition-all delay-150 cursor-pointer" : "flex items-center gap-4 p-4 hover:bg-[#FEF0E8] hover:text-orange transition-all delay-150 cursor-pointer"}>
                         <LuLayoutDashboard className="text-2xl" />
                         <h1>Dashboard</h1>
                     </Link>
-                    <Link href="/profile" className={pathName === "/profile" ? "flex items-center gap-4 p-4 bg-orange text-[#fff] transition-all delay-150 cursor-pointer" : "flex items-center gap-4 p-4 hover:bg-orange hover:text-[#fff] transition-all delay-150 cursor-pointer"}>
-                        <LuUser2 className="text-2xl" />
-                        <h1>Profile</h1>
-                    </Link>
-                    <Link href="/generated-cards" className={pathName === "/generated-cards" ? "flex items-center gap-4 p-4 bg-orange text-[#fff] transition-all delay-150 cursor-pointer" : "flex items-center gap-4 p-4 hover:bg-orange hover:text-[#fff] transition-all delay-150 cursor-pointer"}>
+                    <Link href="/generated-cards" className={pathName === "/generated-cards" ? "flex items-center gap-4 p-4 bg-orange text-[#fff] transition-all delay-150 cursor-pointer" : "flex items-center gap-4 p-4 hover:bg-[#FEF0E8] hover:text-orange transition-all delay-150 cursor-pointer"}>
                         <RiAiGenerate className="text-2xl" />
                         <h1>Generated Cards</h1>
                     </Link>
-                    <Link href="/downloaded-cards" className={pathName === "/downloaded-cards" ? "flex items-center gap-4 p-4 bg-orange text-[#fff] transition-all delay-150 cursor-pointer" : "flex items-center gap-4 p-4 hover:bg-orange hover:text-[#fff] transition-all delay-150 cursor-pointer"}>
+                    <Link href="/downloaded-cards" className={pathName === "/downloaded-cards" ? "flex items-center gap-4 p-4 bg-orange text-[#fff] transition-all delay-150 cursor-pointer" : "flex items-center gap-4 p-4 hover:bg-[#FEF0E8] hover:text-orange transition-all delay-150 cursor-pointer"}>
                         <IoCloudDownloadOutline className="text-2xl" />
                         <h1>Downloaded Cards</h1>
+                    </Link>
+                    <Link href="/profile" className={pathName === "/profile" ? "flex items-center gap-4 p-4 bg-orange text-[#fff] transition-all delay-150 cursor-pointer" : "flex items-center gap-4 p-4 hover:bg-[#FEF0E8] hover:text-orange transition-all delay-150 cursor-pointer"}>
+                        <LuUser2 className="text-2xl" />
+                        <h1>Profile</h1>
                     </Link>
                 </div>
             </section>
