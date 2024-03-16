@@ -5,6 +5,7 @@ import UserDashboard from "@/components/UserDashboard";
 import { useState } from "react";
 import { UserProvider } from "@/app/hooks/UserContext";
 import PrivateRoute from "../hooks/PrivateRoute";
+import AutoLogout from "../hooks/AutoLogout";
 
 const Dashboard = () => {
     const [menu, setMenu] = useState(false)
@@ -17,6 +18,7 @@ const Dashboard = () => {
                     <UserDashboard menu={menu} setMenu={setMenu} title={"DashBoard"} />
                 </UserProvider>
                 <BackToTop targetId={"top"} />
+                <AutoLogout />
             </main>
         </PrivateRoute>
     );
