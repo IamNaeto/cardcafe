@@ -5,11 +5,10 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-// import { auth } from '@/app/firebase/config';
 import { useRouter } from 'next/navigation';
 import { LuLoader2 } from "react-icons/lu";
-import { auth, database } from '@/app/firebase/config'; // Import from config
-import { get, ref, set } from 'firebase/database'; // Import database functions
+import { auth, database } from '@/app/firebase/config';
+import { get, ref, set } from 'firebase/database';
 
 const SignUp = () => {
     const [email, setEmail] = useState("");
@@ -38,7 +37,7 @@ const SignUp = () => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-    // Create a new user object with profile data
+    //A new user object with profile data
     const user = {
       uid: userCredential.user.uid,
       firstName,
