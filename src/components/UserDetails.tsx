@@ -1,48 +1,159 @@
-interface detailsProps {
-    user: any
+import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { ref, update } from 'firebase/database';
+import { database } from '@/app/firebase/config';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+interface UserDetailsProps {
+  user: {
+    uid: any;
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    userName: string;
+    phone: string;
+    location: string;
+  };
 }
-const UserDetails:React.FC<detailsProps> = ({user}) => {
-    return (
-        <main className="w-full xl:w-auto h-full grid gap-4 bg-[#fff] p-10 rounded-xl text-[14px] md:text-[16px] font-medium">
-            <h1 className="text-[18px] md:text-[24px] font-bold">User Details</h1>
 
-            <form action="" className="grid gap-6 w-full">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <label htmlFor="fname">First Name
-                        <input type="text" value={user?.firstName} className="input" disabled id="fname"/>
-                    </label>
+const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
+  const [editing, setEditing] = useState(false);
+  const [updatedUser, setUpdatedUser] = useState({ ...user });
 
-                    <label htmlFor="lname">Last Name
-                        <input type="text" value={user?.lastName} className="input" disabled id="lname"/>
-                    </label>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <label htmlFor="email">Email Address
-                        <input type="email" value={user?.email} className="input" disabled id="email"/>
-                    </label>
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUpdatedUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }));
+  };
 
-                    <label htmlFor="usern">Username
-                        <input type="text" value={user?.userName} className="input" disabled id="usern"/>
-                    </label>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <label htmlFor="phone">Phone Number
-                        <input type="text" value={"+2348147371491"} className="input" disabled id="phone"/>
-                    </label>
+  const handleEdit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setEditing(true);
+  };
 
-                    <label htmlFor="address">Residential Address
-                        <input type="text" value={"Lagos, Nigeria"} className="input" disabled id="address"/>
-                    </label>
-                </div>
+  const handleSave = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <button className="bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 px-5 py-3 rounded-md text-white">Edit Profile</button>
-                    <button className="bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 px-5 py-3 rounded-md text-white">Save</button>
+    if (user) {
+      const userRef = ref(database, `users/${user.uid}`);
+      try {
+        await update(userRef, updatedUser);
+        toast.success('User details saved successfully.');
+        setEditing(false);
+      } catch (error) {
+        console.error('Error updating user details:', error);
+        toast.error('Failed to save user details. Please check console for error.');
+      }
+    }
+  };
 
-                </div>
-            </form>
-        </main>
-    );
-}
+  return (
+    <main className="w-full xl:w-auto h-full grid gap-4 bg-[#fff] p-10 rounded-xl text-[14px] md:text-[16px] font-medium">
+      <h1 className="text-[18px] md:text-[24px] font-bold">User Details</h1>
+
+      <form onSubmit={editing ? handleSave : handleEdit} className="grid gap-6 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <label htmlFor="fname">First Name
+            <input
+              type="text"
+              name="firstName"
+              value={updatedUser.firstName}
+              className="input"
+              disabled={!editing}
+              id="fname"
+              onChange={handleInputChange}
+            />
+          </label>
+
+          <label htmlFor="lname">Last Name
+            <input
+              type="text"
+              name="lastName"
+              value={updatedUser.lastName}
+              className="input"
+              disabled={!editing}
+              id="lname"
+              onChange={handleInputChange}
+            />
+          </label>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <label htmlFor="email">Email Address
+            <input
+              type="email"
+              name="email"
+              value={updatedUser.email}
+              className="input"
+              disabled={!editing}
+              id="email"
+              onChange={handleInputChange}
+            />
+          </label>
+
+          <label htmlFor="usern">Username
+            <input
+              type="text"
+              name="userName"
+              value={updatedUser.userName}
+              className="input"
+              disabled={!editing}
+              id="usern"
+              onChange={handleInputChange}
+            />
+          </label>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <label htmlFor="phone">Phone Number
+            <input
+              type="text"
+              name="phone"
+              value={updatedUser.phone}
+              className="input"
+              disabled={!editing}
+              id="phone"
+              onChange={handleInputChange}
+            />
+          </label>
+
+          <label htmlFor="address">Residential Address
+            <input
+              type="text"
+              name="location"
+              value={updatedUser.location}
+              className="input"
+              disabled={!editing}
+              id="address"
+              onChange={handleInputChange}
+            />
+          </label>
+        </div>
+
+        <div className="w-full flex items-center justify-center">
+          {editing ? (
+            <button
+              className="w-full bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 px-5 py-3 rounded-md text-white"
+              type="submit"
+            >
+              Save
+            </button>
+          ) : (
+            <button
+              className="w-full bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 px-5 py-3 rounded-md text-white"
+              type="submit"
+            >
+              Edit Profile
+            </button>
+          )}
+        </div>
+      </form>
+      <ToastContainer />
+    </main>
+  );
+};
 
 export default UserDetails;

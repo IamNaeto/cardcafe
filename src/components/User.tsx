@@ -18,7 +18,7 @@ const User:React.FC<userProps> = ({user}) => {
                 <p className="text-[14px] md:text-[16px] font-normal">{user?.email}</p>
                 <div className="flex items-center">
                     <CiLocationOn className="text-2xl" />
-                    <p className="text-[12px] md:text-[14px]">Lagos, Nigeria</p>
+                    <p className="text-[12px] md:text-[14px]">{user?.location}</p>
                 </div>
                 <button className="bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 px-5 py-3 rounded-md text-white">Upload Image</button>
 
