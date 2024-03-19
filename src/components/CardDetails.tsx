@@ -56,8 +56,8 @@ const CardDetails: React.FC<props> = ({ title, cardType, user }) => {
     fetchCards(); // Call fetchCards on component mount
   }, [user, cardType]); // Re-run useEffect on user or cardType change
 
-   // Calculate the actual index of each item in the entire list
-   const calculateActualIndex = (currentIndex: number) => {
+  // Calculate the actual index of each item in the entire list
+  const calculateActualIndex = (currentIndex: number) => {
     return indexOfFirstCard + currentIndex + 1;
   };
 
@@ -115,9 +115,14 @@ const CardDetails: React.FC<props> = ({ title, cardType, user }) => {
           )}
         </div>
       )}
-      {!isDashboardRoute &&
-        <Pagination totalItems={fetchedCards.length} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} currentPage={currentPage} />
-      }
+      {!isDashboardRoute && fetchedCards.length !== 0 && (
+        <Pagination
+          totalItems={fetchedCards.length}
+          itemsPerPage={itemsPerPage}
+          onPageChange={handlePageChange}
+          currentPage={currentPage}
+        />
+      )}
     </main>
   );
 };
