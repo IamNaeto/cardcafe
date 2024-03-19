@@ -56,6 +56,11 @@ const CardDetails: React.FC<props> = ({ title, cardType, user }) => {
     fetchCards(); // Call fetchCards on component mount
   }, [user, cardType]); // Re-run useEffect on user or cardType change
 
+   // Calculate the actual index of each item in the entire list
+   const calculateActualIndex = (currentIndex: number) => {
+    return indexOfFirstCard + currentIndex + 1;
+  };
+
   // Pagination logic
   const indexOfLastCard = currentPage * itemsPerPage;
   const indexOfFirstCard = indexOfLastCard - itemsPerPage;
@@ -100,7 +105,7 @@ const CardDetails: React.FC<props> = ({ title, cardType, user }) => {
           ) : (
             currentCards.map((cardData, index) => (
               <div key={index} className="text-[14px] md:text-[16px] font-normal flex items-center justify-between">
-                <h1 className="w-[50px] py-2">{index + 1}</h1>
+                <h1 className="w-[50px] py-2">{calculateActualIndex(index)}</h1>
                 <h1 className="w-[150px] py-2">{cardData.cardType}</h1>
                 <h1 className="w-[100px] py-2">{cardData.cardCVV}</h1>
                 <h1 className="w-[200px] py-2">{cardData.cardNumber}</h1>
@@ -108,11 +113,11 @@ const CardDetails: React.FC<props> = ({ title, cardType, user }) => {
               </div>
             ))
           )}
-          {!isDashboardRoute &&
-            <Pagination totalItems={fetchedCards.length} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} currentPage={currentPage} />
-          }
         </div>
       )}
+      {!isDashboardRoute &&
+        <Pagination totalItems={fetchedCards.length} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} currentPage={currentPage} />
+      }
     </main>
   );
 };
