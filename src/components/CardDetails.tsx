@@ -3,6 +3,7 @@ import { get, ref } from "firebase/database";
 import { useEffect, useState } from "react";
 import { LuLoader2 } from "react-icons/lu";
 import { usePathname } from "next/navigation";
+import Pagination from "./Pagination";
 
 // Interface for props passed to the component
 interface props {
@@ -19,9 +20,10 @@ interface CardData {
 }
 
 const CardDetails: React.FC<props> = ({ title, cardType, user }) => {
-  // State variables
-  const [fetchedCards, setFetchedCards] = useState<CardData[]>([]); // Array to store fetched cards
-  const [isLoading, setIsLoading] = useState(true); // Loading state
+  const [fetchedCards, setFetchedCards] = useState<CardData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   const pathName = usePathname()
   const isDashboardRoute = pathName === '/dashboard';
@@ -53,6 +55,16 @@ const CardDetails: React.FC<props> = ({ title, cardType, user }) => {
 
     fetchCards(); // Call fetchCards on component mount
   }, [user, cardType]); // Re-run useEffect on user or cardType change
+
+  // Pagination logic
+  const indexOfLastCard = currentPage * itemsPerPage;
+  const indexOfFirstCard = indexOfLastCard - itemsPerPage;
+  const currentCards = fetchedCards.slice(indexOfFirstCard, indexOfLastCard);
+
+  // Handle page change
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <main className="w-full grid gap-4 p-6 rounded-xl bg-white">
@@ -86,7 +98,7 @@ const CardDetails: React.FC<props> = ({ title, cardType, user }) => {
               </div>
             ))
           ) : (
-            fetchedCards.map((cardData, index) => (
+            currentCards.map((cardData, index) => (
               <div key={index} className="text-[14px] md:text-[16px] font-normal flex items-center justify-between">
                 <h1 className="w-[50px] py-2">{index + 1}</h1>
                 <h1 className="w-[150px] py-2">{cardData.cardType}</h1>
@@ -96,6 +108,9 @@ const CardDetails: React.FC<props> = ({ title, cardType, user }) => {
               </div>
             ))
           )}
+          {!isDashboardRoute &&
+            <Pagination totalItems={fetchedCards.length} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} currentPage={currentPage} />
+          }
         </div>
       )}
     </main>
