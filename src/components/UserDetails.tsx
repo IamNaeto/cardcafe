@@ -5,7 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface UserDetailsProps {
-  user: {
+  updatedUser: {
     uid: any;
     id: string;
     firstName: string;
@@ -15,15 +15,15 @@ interface UserDetailsProps {
     phone: string;
     location: string;
   };
+  setUpdatedUser: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
-const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
+const UserDetails: React.FC<UserDetailsProps> = ({ updatedUser, setUpdatedUser }) => {
   const [editing, setEditing] = useState(false);
-  const [updatedUser, setUpdatedUser] = useState({ ...user });
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUpdatedUser((prevUser) => ({
+    setUpdatedUser((prevUser: any) => ({
       ...prevUser,
       [name]: value,
     }));
@@ -37,8 +37,8 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
   const handleSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (user) {
-      const userRef = ref(database, `users/${user.uid}`);
+    if (updatedUser) {
+      const userRef = ref(database, `users/${updatedUser.uid}`);
       try {
         await update(userRef, updatedUser);
         toast.success('User details saved successfully.');
