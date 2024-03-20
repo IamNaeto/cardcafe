@@ -61,6 +61,30 @@ const CardGen = () => {
         } else if (selectedCardType === "Verve") {
             cardData.cardNumber = `6${getRandomDigits(15)}`;
             cardData.cardCVV = getRandomDigits(3);
+        } else if (selectedCardType === "American Express") {
+            cardData.cardNumber = `34${getRandomDigits(13)}`;
+            cardData.cardCVV = getRandomDigits(3);
+        } else if (selectedCardType === "Discover") {
+            cardData.cardNumber = `6${getRandomDigits(15)}`;
+            cardData.cardCVV = getRandomDigits(3);
+        } else if (selectedCardType === "JCB") {
+            cardData.cardNumber = `35${getRandomDigits(14)}`;
+            cardData.cardCVV = getRandomDigits(3);
+        } else if (selectedCardType === "RuPay") {
+            cardData.cardNumber = `6${getRandomDigits(15)}`;
+            cardData.cardCVV = getRandomDigits(3);
+        } else if (selectedCardType === "Maestro") {
+            cardData.cardNumber = `5${getRandomDigits(15)}`;
+            cardData.cardCVV = getRandomDigits(3);
+        } else if (selectedCardType === "Union Pay") {
+            cardData.cardNumber = `62${getRandomDigits(17)}`;
+            cardData.cardCVV = getRandomDigits(3);
+        } else if (selectedCardType === "Voyager") {
+            cardData.cardNumber = `8699${getRandomDigits(11)}`;
+            cardData.cardCVV = getRandomDigits(3);
+        } else if (selectedCardType === "Diners Club") {
+            cardData.cardNumber = `300${getRandomDigits(11)}`;
+            cardData.cardCVV = getRandomDigits(3);
         }
 
         setGeneratedCardNumber(cardData.cardNumber);
@@ -93,6 +117,22 @@ const CardGen = () => {
             return "/img/mastercard.png";
         } else if (cardTypeToDisplay === "Verve") {
             return "/img/verve.png";
+        } else if (cardTypeToDisplay === "American Express") {
+            return "/img/express.png";
+        } else if (cardTypeToDisplay === "Maestro") {
+            return "/img/maestro.png";
+        } else if (cardTypeToDisplay === "Discover") {
+            return "/img/discover.png";
+        } else if (cardTypeToDisplay === "JCB") {
+            return "/img/jcb.png";
+        } else if (cardTypeToDisplay === "RuPay") {
+            return "/img/rupay.png";
+        } else if (cardTypeToDisplay === "Union Pay") {
+            return "/img/unionpay.png";
+        } else if (cardTypeToDisplay === "Voyager") {
+            return "/img/voyager.png";
+        } else if (cardTypeToDisplay === "Diners Club") {
+            return "/img/diners.png";
         } else {
             return "/img/default-card.png";
         }
@@ -266,10 +306,18 @@ const CardGen = () => {
                     className="input"
                     onChange={(e) => setSelectedCardType(e.target.value)}
                 >
-                    <option value="option">--select card brand--</option>
-                    <option value="Mastercard">Mastercard</option>
-                    <option value="Visa">Visa</option>
-                    <option value="Verve">Verve</option>
+                    <option value="option" className="bg-yellow text-white">--select card brand--</option>
+                    <option value="Mastercard" className="bg-yellow text-white">Mastercard</option>
+                    <option value="Visa" className="bg-yellow text-white">Visa</option>
+                    <option value="Verve" className="bg-yellow text-white">Verve</option>
+                    <option value="Maestro" className="bg-yellow text-white">Maestro</option>
+                    <option value="American Express" className="bg-yellow text-white">American Express</option>
+                    <option value="Discover" className="bg-yellow text-white">Discover</option>
+                    <option value="JCB" className="bg-yellow text-white">JCB</option>
+                    <option value="RuPay" className="bg-yellow text-white">RuPay</option>
+                    <option value="Union Pay" className="bg-yellow text-white">Union Pay</option>
+                    <option value="Voyager" className="bg-yellow text-white">Voyager</option>
+                    <option value="Diners Club" className="bg-yellow text-white">Diners Club</option>
                 </select>
 
                 <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 mt-4">
