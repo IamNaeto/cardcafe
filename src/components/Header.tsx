@@ -9,6 +9,7 @@ import { auth } from "@/app/firebase/config";
 import { signOut } from "firebase/auth";
 import { useRouter } from 'next/navigation';
 import { LuLoader2 } from "react-icons/lu";
+import { motion } from "framer-motion";
 
 const Header = () => {
   // Manage header bg change on scroll
@@ -74,9 +75,18 @@ const Header = () => {
     <main className={`fixed left-0 top-0 w-full z-50 ${headerBackground}`} id="top">
       <nav className="w-full flex flex-col md:flex-row items-start md:items-center justify-between px-0 md:px-[5%] py-3">
         <div className="w-full md:w-auto flex items-center justify-between px-[5%] md:px-0">
-          <Link href={"/"}>
+
+          <motion.div 
+          whileHover={{
+            scale: 1.2,
+            transition: { duration: 1 },
+          }}
+          whileTap={{ scale: 0.9 }}
+          >
+            <Link href={"/"}>
             <Image src={"/img/logo.png"} width={70} height={70} alt="logo" loading="lazy" className="w-full" />
-          </Link>
+            </Link>
+          </motion.div>
           {isMenuOpen ?
             <RiCloseCircleLine className="text-4xl text-yellow block md:hidden cursor-pointer" onClick={toggleMenu} />
             :

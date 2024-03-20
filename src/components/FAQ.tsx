@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 const FAQ = () => {
@@ -49,12 +50,31 @@ const FAQ = () => {
 
     return (
         <main className="relative px-[5%] py-16 grid grid-cols-1 gap-4 items-center justify-center place-items-center bg-white text-[16px] text-dark">
-            <h1 className="text-[38px] md:text-[46px] font-extrabold text-center">Frequently Asked Questions</h1>
-            <p className="leading-relaxed tracking-wide font-light text-center max-w-full lg:max-w-[60%] xl:max-w-[50%]">If you are not sure weather draft is suitable for you or not, do not worry. We are here to explain everything you might want to know</p>
+            <motion.h1
+                className="text-[38px] md:text-[46px] font-extrabold text-center"
+                initial={{ opacity: 0, y: -40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: "easeInOut" }}
+                viewport={{ once: true }}
+            >Frequently Asked Questions</motion.h1>
+            <motion.p
+                className="leading-relaxed tracking-wide font-light text-center max-w-full lg:max-w-[60%] xl:max-w-[50%]"
+                initial={{ opacity: 0, y: -40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: "easeInOut" }}
+                viewport={{ once: true }}
+            >If you are not sure weather draft is suitable for you or not, do not worry. We are here to explain everything you might want to know</motion.p>
 
             <section className="grid gap-4 w-full md:w-[80%]">
                 {FAQsData.map((faqs, index) => (
-                    <div key={index} className="grid gap-4 p-4 rounded-xl border shadow-xl">
+                    <motion.div
+                        key={index}
+                        className="grid gap-4 p-4 rounded-xl border shadow-xl"
+                        initial={{ opacity: 0, y: -40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, ease: "easeInOut" }}
+                        viewport={{ once: true }}
+                    >
                         <div className="flex items-center justify-between">
                             <h3 className="text-[15px] md:text-[18px]">{faqs.question}</h3>
 
@@ -67,7 +87,7 @@ const FAQ = () => {
                         {expandedIndex === index && (
                             <p className="text-[13px] md:text-[15px] text-justify">{faqs.answer}</p>
                         )}
-                    </div>
+                    </motion.div>
                 ))}
             </section>
         </main>

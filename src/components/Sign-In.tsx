@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
 import { LuLoader2 } from "react-icons/lu";
+import { motion } from "framer-motion";
 
 const Sign_In = () => {
     const [email, setEmail] = useState("");
@@ -69,14 +70,26 @@ const Sign_In = () => {
     return (
         <main className="relative top-[60px] md:top-[75px] px-[5%] py-10 grid grid-cols-1 md:grid-cols-2 gap-6 items-center justify-between bg-white">
             <section className="grid text-[14px] md:text-[16px] font-normal text-dark text-center md:text-left">
-                <div className="grid gap-4 md:gap-2">
+                <motion.div 
+                className="grid gap-4 md:gap-2"
+                initial={{ opacity: 0, y: -40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: "easeInOut" }}
+                viewport={{ once: true }}
+                >
                     <h1 className="text-[36px] sm:text-[38px] md:text-[48px] font-bold">Sign in to continue</h1>
                     <p className="w-full lg:w-[75%] leading-relaxed tracking-wide">Welcome back to Card Cafe credit card generator. Please sign in to continue from where you left off.</p>
-                </div>
+                </motion.div>
 
-                <div className="hidden md:block">
+                <motion.div
+                className="hidden md:block"
+                initial={{ opacity: 0, scale: 0.7 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, ease: "easeInOut" }}
+                viewport={{ once: true }}
+                >
                     <Image src={"/img/signin-img.png"} alt={"sigin-img"} width={400} height={400} loading="lazy"/>
-                </div>
+                </motion.div>
             </section>
 
             <section className="grid place-items-center mt-6 md:mt-0">

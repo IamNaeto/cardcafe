@@ -8,6 +8,7 @@ import CardFront from "./CardFront";
 import { useUser } from "@/app/hooks/UserContext";
 import { ref, set, child, update } from "firebase/database"; // Firebase imports
 import { auth, app, database } from "@/app/firebase/config";
+import { motion } from "framer-motion";
 
 
 interface CardData {
@@ -268,7 +269,14 @@ const CardGen = () => {
                     ></div>
                 </div>
 
-                <div id="card-back" className={`bg-gradient-to-br ${cardBg} py-4 sm:py-6 rounded-2xl min-h-[300px] text-white relative`}>
+                <motion.div
+                    id="card-back"
+                    className={`bg-gradient-to-br ${cardBg} py-4 sm:py-6 rounded-2xl min-h-[300px] text-white relative`}
+                    initial={{ opacity: 0, scale: 0.7 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1, ease: "easeInOut" }}
+                    viewport={{ once: true }}
+                >
                     <div className="bg-black h-16 w-full mt-2"></div>
 
                     <div className="grid gap-2 px-4 sm:py-6">
@@ -293,18 +301,28 @@ const CardGen = () => {
                         <p className="text-[14px] md:text-[16px] leading-normal tracking-tight text-justify">This card is issued by and remains the property of Card Cafe. This card may be used only by the named cardholder and in accordance with the Card Cafe Terms and Conditions of Use</p>
 
                     </div>
-                </div>
+                </motion.div>
                 <p className="text-center leading-relaxed tracking-wide font-bold">Credit Card Back View</p>
             </section>
 
             <section className="flex flex-col gap-4 text-[14px] md:text-[16px]">
-                <h1 className="text-[38px] lg:text-[46px] font-extrabold text-center lg:text-left">Ready To Create & Test Beautifully Designed Credit Cards?</h1>
+                <motion.h1
+                    className="text-[38px] lg:text-[46px] font-extrabold text-center lg:text-left"
+                    initial={{ opacity: 0, y: -40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, ease: "easeInOut" }}
+                    viewport={{ once: true }}
+                >Ready To Create & Test Beautifully Designed Credit Cards?</motion.h1>
 
-                <select
+                <motion.select
                     name=""
                     id=""
                     className="input"
                     onChange={(e) => setSelectedCardType(e.target.value)}
+                    initial={{ opacity: 0, y: -40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, ease: "easeInOut" }}
+                    viewport={{ once: true }}
                 >
                     <option value="option" className="bg-yellow text-white">--select card brand--</option>
                     <option value="Mastercard" className="bg-yellow text-white">Mastercard</option>
@@ -318,16 +336,22 @@ const CardGen = () => {
                     <option value="Union Pay" className="bg-yellow text-white">Union Pay</option>
                     <option value="Voyager" className="bg-yellow text-white">Voyager</option>
                     <option value="Diners Club" className="bg-yellow text-white">Diners Club</option>
-                </select>
+                </motion.select>
 
-                <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 mt-4">
+                <motion.div
+                    className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 mt-4"
+                    initial={{ opacity: 0, y: -40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, ease: "easeInOut" }}
+                    viewport={{ once: true }}
+                >
                     <button onClick={handleGenerateClick} className="bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 w-full px-5 py-4 rounded-md text-white text-center">
                         Generate
                     </button>
                     <button onClick={handleDownloadClick} className="bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 w-full px-5 py-4 rounded-md text-white text-center">
                         Download
                     </button>
-                </div>
+                </motion.div>
             </section>
 
             <ToastContainer />

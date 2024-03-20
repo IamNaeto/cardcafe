@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Image from "next/image";
 interface cardFrontProps{
     cardBg: string;
@@ -10,7 +11,14 @@ interface cardFrontProps{
 }
 const CardFront:React.FC<cardFrontProps> = ({ cardBg, generatedCardNumber, showGeneratedDetails, getCardImage, user }) => {
     return (
-        <main id="card-front" className={`bg-gradient-to-br ${cardBg} p-4 sm:p-6 rounded-2xl min-h-[300px] text-white relative`}>
+        <motion.main 
+        id="card-front" 
+        className={`bg-gradient-to-br ${cardBg} p-4 sm:p-6 rounded-2xl min-h-[300px] text-white relative`}
+        initial={{ opacity: 0, scale: 0.7 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, ease: "easeInOut" }}
+                viewport={{ once: true }}
+        >
             <div className="flex items-end justify-end">
                 <Image src={"/img/cardicon.png"} width={50} height={50} alt="cardicon" loading="lazy" className="mb-4" />
             </div>
@@ -27,7 +35,7 @@ const CardFront:React.FC<cardFrontProps> = ({ cardBg, generatedCardNumber, showG
                     <Image src={getCardImage()} width={50} height={50} alt="" loading="lazy" />
                 </div>
             )}
-        </main>
+        </motion.main>
     );
 }
 

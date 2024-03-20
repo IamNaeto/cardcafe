@@ -5,11 +5,12 @@ import { BiMessageRoundedDots } from "react-icons/bi";
 import { AiOutlineEye } from "react-icons/ai";
 import { collectionsData } from "./CollectionsData";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const Collections = () => {
   const [hoveredImage, setHoveredImage] = useState(null);
 
-  const handleMouseOver = (index:any) => {
+  const handleMouseOver = (index: any) => {
     setHoveredImage(index);
   };
 
@@ -19,15 +20,25 @@ const Collections = () => {
 
   return (
     <main className="relative top-0 px-[5%] border-dark py-10 bg-white grid gap-6 text-dark text-[13px] sm:text-[14px] md:text-[16px] font-medium">
-      <h1 className="text-[34px] sm:text-[36px] md:text-[46px] font-bold text-center">
+      <motion.h1
+        className="text-[34px] sm:text-[36px] md:text-[46px] font-bold text-center"
+        initial={{ opacity: 0, y: -40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+        viewport={{ once: true }}
+      >
         Our Card Collections
-      </h1>
+      </motion.h1>
 
       <section className="grid grid-cols-2 md:grid-cols-3 gap-4 items-center justify-between">
         {collectionsData.map((collections, index) => (
-          <div
+          <motion.div
             key={index}
-            className="bg-[#F8F8F8] p-2 rounded-xl max-h-[400px] flex flex-col justify-between"
+            className="bg-[#F8F8F8] p-2 rounded-xl max-h-[450px] flex flex-col justify-between"
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+            viewport={{ once: true }}
           >
             <div
               onMouseOver={() => handleMouseOver(index)}
@@ -72,7 +83,7 @@ const Collections = () => {
                 </Link>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </section>
     </main>
