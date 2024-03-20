@@ -3,6 +3,7 @@ import { ref, update } from 'firebase/database';
 import { database } from '@/app/firebase/config';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { motion } from 'framer-motion';
 
 interface UserDetailsProps {
   updatedUser: {
@@ -51,7 +52,13 @@ const UserDetails: React.FC<UserDetailsProps> = ({ updatedUser, setUpdatedUser }
   };
 
   return (
-    <main className="w-full xl:w-auto h-full grid gap-4 bg-[#fff] p-10 rounded-xl text-[14px] md:text-[16px] font-medium">
+    <motion.main 
+    className="w-full xl:w-auto h-full grid gap-4 bg-[#fff] p-10 rounded-xl text-[14px] md:text-[16px] font-medium"
+    initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+            viewport={{ once: true }}
+    >
       <h1 className="text-[18px] md:text-[24px] font-bold">User Details</h1>
 
       <form onSubmit={editing ? handleSave : handleEdit} className="grid gap-6 w-full">
@@ -152,7 +159,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ updatedUser, setUpdatedUser }
         </div>
       </form>
       <ToastContainer />
-    </main>
+    </motion.main>
   );
 };
 

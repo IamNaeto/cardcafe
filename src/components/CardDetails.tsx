@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { LuLoader2 } from "react-icons/lu";
 import { usePathname } from "next/navigation";
 import Pagination from "./Pagination";
+import { motion } from "framer-motion";
 
 // Interface for props passed to the component
 interface props {
@@ -72,7 +73,13 @@ const CardDetails: React.FC<props> = ({ title, cardType, user }) => {
   };
 
   return (
-    <main className="w-full grid gap-4 p-6 rounded-xl bg-white">
+    <motion.main 
+    className="w-full grid gap-4 p-6 rounded-xl bg-white"
+    initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+            viewport={{ once: true }}
+    >
       <h1 className="text-[18px] md:text-[24px] font-bold">{title}</h1>
 
       {isLoading ? (
@@ -123,7 +130,7 @@ const CardDetails: React.FC<props> = ({ title, cardType, user }) => {
           currentPage={currentPage}
         />
       )}
-    </main>
+    </motion.main>
   );
 };
 

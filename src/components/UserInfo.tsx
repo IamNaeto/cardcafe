@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getAuth, User } from "firebase/auth";
 import firebase from "firebase/compat/app";
 import { DateTimeFormatOptions } from 'intl';
+import { motion } from "framer-motion";
 
 interface Props {
   user: any | User | null;
@@ -27,7 +28,13 @@ const UserInfo: React.FC<Props> = ({ user }) => {
   }
 
   return (
-    <main className="flex flex-col md:flex-row items-center justify-between gap-5 text-[#0F0F0F] p-5 rounded-xl bg-[#fff]">
+    <motion.main
+      className="flex flex-col md:flex-row items-center justify-between gap-5 text-[#0F0F0F] p-5 rounded-xl bg-[#fff]"
+      initial={{ opacity: 0, y: -40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: "easeInOut" }}
+      viewport={{ once: true }}
+    >
       <section className="flex flex-col md:flex-row items-center justify-center gap-4">
         {user?.img ? (
           <Image src={user?.img} width={70} height={70} alt="user" className="rounded-full" />
@@ -46,7 +53,7 @@ const UserInfo: React.FC<Props> = ({ user }) => {
         <p className="text-[12px] md:text-[14px] font-normal text-center md:text-left">Your last login was on</p>
         <h1 className="text-[16px] md:text-[18px] font-bold text-center md:text-left">{lastLoginDate}</h1>
       </section>
-    </main>
+    </motion.main>
   );
 };
 

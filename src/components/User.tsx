@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { CiLocationOn } from "react-icons/ci";
 interface userProps {
@@ -6,7 +7,13 @@ interface userProps {
 
 const User: React.FC<userProps> = ({ user }) => {
   return (
-    <main className="w-full xl:w-auto flex flex-col h-full items-center justify-center gap-4 bg-[#fff] p-10 rounded-xl text-[#0F0F0F] text-center">
+    <motion.main
+      className="w-full xl:w-auto flex flex-col h-full items-center justify-center gap-4 bg-[#fff] p-10 rounded-xl text-[#0F0F0F] text-center"
+      initial={{ opacity: 0, x: -40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1, ease: "easeInOut" }}
+      viewport={{ once: true }}
+    >
       {user?.img ? (
         <Image src={user?.img} width={200} height={200} alt="user" className="rounded-full" />
       ) : (
@@ -26,7 +33,7 @@ const User: React.FC<userProps> = ({ user }) => {
       </div>
       <button className="bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 px-5 py-3 rounded-md text-white">Upload Image</button>
 
-    </main>
+    </motion.main>
   );
 }
 
