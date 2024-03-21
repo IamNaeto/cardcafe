@@ -8,7 +8,7 @@ const Error404 = () => {
             </section>
             <section className="flex flex-col items-center justify-center gap-4 text-[14px] md:text-[16px] text-center text-dark font-normal">
                 <h1 className="text-5xl lg:text-6xl font-extrabold">PAGE NOT FOUND</h1>
-                <p className="w-[70%]">We Couldn't Find The Page You Were Looking For...</p>
+                <p className="w-[70%]">We Couldn&apos;t Find The Page You Were Looking For...</p>
 
                 <div>
                     <Link href={"/"} className={`bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 w-[200px] px-5 py-3 rounded-md text-white flex items-center justify-center cursor-pointer`}
