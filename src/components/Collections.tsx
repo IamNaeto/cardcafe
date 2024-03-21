@@ -35,7 +35,7 @@ const Collections = () => {
           <motion.div
             key={index}
             className="bg-[#F8F8F8] p-2 rounded-xl max-h-[450px] flex flex-col justify-between"
-            initial={{ opacity: 0, scale: 0.5 }}
+            initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeInOut" }}
             viewport={{ once: true }}

@@ -40,7 +40,7 @@ const Testimonials = () => {
 
             <motion.div
                 className="grid gap-4 font-normal mt-5 md:mt-0 order-1 md:order-2"
-                initial={{ opacity: 0, y: -40 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: "easeInOut" }}
                 viewport={{ once: true }}

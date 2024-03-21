@@ -4,7 +4,7 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { LuUser2 } from "react-icons/lu";
 import { RiAiGenerate } from "react-icons/ri";
 import { IoCloudDownloadOutline } from "react-icons/io5";
-import { MdOutlineArrowBackIosNew } from "react-icons/md";
+import { BiSolidLeftArrow } from "react-icons/bi";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -33,7 +33,7 @@ const SideBar: React.FC<props> = ({ menu, setMenu }) => {
                     >
                         <Image src={"/img/logo.png"} width={100} height={100} alt="logo" />
                     </motion.div>
-                    <MdOutlineArrowBackIosNew
+                    <BiSolidLeftArrow
                         className="absolute block lg:hidden right-0 top-4 text-3xl text-orange cursor-pointer"
                         onClick={toggleSideBar}
                     />

@@ -52,14 +52,14 @@ const FAQ = () => {
         <main className="relative px-[5%] py-16 grid grid-cols-1 gap-4 items-center justify-center place-items-center bg-white text-[16px] text-dark">
             <motion.h1
                 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center"
-                initial={{ opacity: 0, y: -40 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: "easeInOut" }}
                 viewport={{ once: true }}
             >Frequently Asked Questions</motion.h1>
             <motion.p
                 className="leading-relaxed tracking-wide font-light text-center max-w-full lg:max-w-[60%] xl:max-w-[50%]"
-                initial={{ opacity: 0, y: -40 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: "easeInOut" }}
                 viewport={{ once: true }}
@@ -70,7 +70,7 @@ const FAQ = () => {
                     <motion.div
                         key={index}
                         className="grid gap-4 p-4 rounded-xl border shadow-xl"
-                        initial={{ opacity: 0, y: -40 }}
+                        initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: "easeInOut" }}
                         viewport={{ once: true }}

@@ -1,11 +1,19 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { CiLocationOn } from "react-icons/ci";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 interface userProps {
   user: any
 }
 
 const User: React.FC<userProps> = ({ user }) => {
+
+  const handleProfilePictureUpload = async (e: { preventDefault: () => void; }) =>{
+      e.preventDefault()
+      toast.info("Coming soon...")
+  }
+
   return (
     <motion.main
       className="w-full xl:w-auto flex flex-col h-full items-center justify-center gap-4 bg-[#fff] p-10 rounded-xl text-[#0F0F0F] text-center"
@@ -31,8 +39,12 @@ const User: React.FC<userProps> = ({ user }) => {
           <p className="text-[12px] md:text-[14px]">No provided address</p>
         )}
       </div>
-      <button className="bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 px-5 py-3 rounded-md text-white">Upload Image</button>
+      <button 
+      className="bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 px-5 py-3 rounded-md text-white"
+      onClick={handleProfilePictureUpload}
+      >Upload Image</button>
 
+      <ToastContainer />
     </motion.main>
   );
 }

@@ -15,7 +15,7 @@ const HowItWorks = () => {
 
             <motion.div
                 className="grid gap-4 text-[14px] md:text-[16px]  text-dark font-normal order-1 md:order-2"
-                initial={{ opacity: 0, y: -40 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: "easeInOut" }}
                 viewport={{ once: true }}

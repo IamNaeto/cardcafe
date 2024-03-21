@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 const Error404 = () => {
     return (
-        <main className="w-full grid grid-cols-1 md:grid-cols-2 items-center justify-center min-h-screen gap-1 md:gap-10 px-[5%] py-10">
+        <main className="w-full grid grid-cols-1 md:grid-cols-2 items-center justify-center min-h-screen gap-1 md:gap-10 px-[5%] py-5 sm:py-10">
             <section className="w-full flex items-center justify-center">
                 <Image src="/img/error.png" width={300} height={300} alt="error-img" className="w-[80%] dangling-picture" />
             </section>
