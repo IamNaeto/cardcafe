@@ -81,18 +81,20 @@ const handleError = (error:any) => {
 };
     return (
         <main className="relative top-[60px] md:top-[75px] px-[5%] py-10 grid grid-cols-1 md:grid-cols-2 gap-6 justify-between bg-white">
-            <section className="grid text-[14px] md:text-[16px] font-normal text-dark text-center md:text-left">
+            <section className="flex flex-col gap-4 text-[14px] md:text-[16px] font-normal text-dark text-center md:text-left">
                 <motion.div 
-                className="grid gap-4 md:gap-2"
+                className="flex flex-col gap-2 md:gap-4"
                 initial={{ opacity: 0, y: -40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: "easeInOut" }}
                 viewport={{ once: true }}
                 >
-                    <h1 className="text-[36px] sm:text-[38px] md:text-[48px] font-bold">Create your free account</h1>
-                    <p className="w-full lg:w-[80%] leading-relaxed tracking-wide">Do so much more when you create an account on card cafe. Sign up now and start enjoying unlimited features.</p>
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">Create your free account</h1>
+                    <p className="w-full lg:w-[80%]">Do so much more when you create an account on card cafe. Sign up now and start enjoying unlimited features.</p>
 
+                    <div className="flex items-center md:items-start justify-center md:justify-start">
                     <Link href={"/documentation"} className="flex items-center gap-2 hover:gap-4 transition-all delay-150 text-yellow">Read Documentation <FaArrowRightLong /></Link>
+                    </div>
                 </motion.div>
 
                 <motion.div 

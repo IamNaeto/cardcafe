@@ -45,7 +45,7 @@ const Testimonials = () => {
                 transition={{ duration: 1, ease: "easeInOut" }}
                 viewport={{ once: true }}
             >
-                <h1 className="text-[38px] md:text-[46px] font-extrabold text-center md:text-left">What Others Think About Our Platform</h1>
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center md:text-left">What Others Think About Our Platform</h1>
                 <p className="leading-relaxed tracking-wide text-justify">You&#39;re probably still wondering how a credit card generator is useful when they cannot be used to purchase anything, right? Well it turns out there are loads of reasons why they&#39;re useful, check out what our users are saying about the platform</p>
             </motion.div>
         </main>

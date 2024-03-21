@@ -13,7 +13,7 @@ const LibraryHero = () => {
                     transition={{ duration: 1, ease: "easeInOut" }}
                     viewport={{ once: true }}
                 >
-                    <h1 className="text-[46px] md:text-[48px] lg:text-[56px] font-extrabold">The Best Card Collection For You</h1>
+                    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold">The Best Card Collection For You</h1>
                     <p className="w-full lg:w-[90%]">Our Credit Card Generator tool&apos;s primary purpose is for software testing and data verification purposes. Instead of using a real credit card, you can use our 100% valid credit cards to safely test your websites & apps.</p>
                 </motion.div>
                 <motion.div className="flex items-center justify-center mb-8 md:mb-0"

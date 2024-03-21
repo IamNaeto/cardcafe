@@ -244,7 +244,7 @@ const CardGen = () => {
 
     return (
         <main className="relative top-[60px] sm:top-[70px] px-[5%] py-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <section className="text-[14px] md:text-[16px] bg-[#F8F8F8] p-3 sm:p-6 md:p-10 rounded-2xl grid gap-4">
+            <section className="text-[14px] md:text-[16px] bg-[#F8F8F8] p-3 sm:p-6 md:p-10 rounded-2xl flex flex-col gap-4 order-2 lg:order-1">
 
                 <CardFront cardBg={cardBg} generatedCardNumber={generatedCardNumber} showGeneratedDetails={showGeneratedDetails} getCardImage={getCardImage} user={user} />
 
@@ -305,9 +305,9 @@ const CardGen = () => {
                 <p className="text-center leading-relaxed tracking-wide font-bold">Credit Card Back View</p>
             </section>
 
-            <section className="flex flex-col gap-4 text-[14px] md:text-[16px]">
+            <section className="flex flex-col gap-4 text-[14px] md:text-[16px] order-1">
                 <motion.h1
-                    className="text-[38px] lg:text-[46px] font-extrabold text-center lg:text-left"
+                    className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center lg:text-left"
                     initial={{ opacity: 0, y: -40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: "easeInOut" }}
@@ -352,9 +352,9 @@ const CardGen = () => {
                         Download
                     </button>
                 </motion.div>
-            </section>
 
-            <ToastContainer />
+                <ToastContainer />
+            </section>
         </main>
     );
 }

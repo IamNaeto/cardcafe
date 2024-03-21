@@ -7,6 +7,7 @@ import { IoCloudDownloadOutline } from "react-icons/io5";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { motion } from "framer-motion";
 interface props {
     menu: boolean;
     setMenu: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,18 +18,24 @@ const SideBar: React.FC<props> = ({ menu, setMenu }) => {
 
     const toggleSideBar = () => {
         setMenu(!menu);
-      };
+    };
 
-    return ( 
+    return (
         <main className={`lg:grid fixed left-0 z-50 w-full lg:w-[230px] h-screen backdrop-blur-sm ${menu ? "grid" : "hidden"}`}>
             <section className="w-[230px] lg:w-full h-full text-[14px] md:text-[16px] py-10 bg-[#fff]">
                 <div className="relative grid items-center justify-center mb-10">
-                    <div >
-                        <Image src={"/img/logo.png"} width={100} height={100} alt="logo"/>
-                    </div>
-                    <MdOutlineArrowBackIosNew  
-                    className="absolute block lg:hidden right-0 top-4 text-3xl text-orange cursor-pointer"
-                    onClick={toggleSideBar}
+                    <motion.div
+                        whileHover={{
+                            scale: 1.2,
+                            transition: { duration: 1 },
+                        }}
+                        whileTap={{ scale: 0.9 }}
+                    >
+                        <Image src={"/img/logo.png"} width={100} height={100} alt="logo" />
+                    </motion.div>
+                    <MdOutlineArrowBackIosNew
+                        className="absolute block lg:hidden right-0 top-4 text-3xl text-orange cursor-pointer"
+                        onClick={toggleSideBar}
                     />
                 </div>
 
@@ -53,7 +60,7 @@ const SideBar: React.FC<props> = ({ menu, setMenu }) => {
             </section>
 
         </main>
-     );
+    );
 }
- 
+
 export default SideBar;

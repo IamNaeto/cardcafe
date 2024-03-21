@@ -21,7 +21,7 @@ const Collections = () => {
   return (
     <main className="relative top-0 px-[5%] border-dark py-10 bg-white grid gap-6 text-dark text-[13px] sm:text-[14px] md:text-[16px] font-medium">
       <motion.h1
-        className="text-[34px] sm:text-[36px] md:text-[46px] font-bold text-center"
+        className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center"
         initial={{ opacity: 0, y: -40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeInOut" }}

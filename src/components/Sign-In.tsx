@@ -77,7 +77,7 @@ const Sign_In = () => {
                 transition={{ duration: 1, ease: "easeInOut" }}
                 viewport={{ once: true }}
                 >
-                    <h1 className="text-[36px] sm:text-[38px] md:text-[48px] font-bold">Sign in to continue</h1>
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">Sign in to continue</h1>
                     <p className="w-full lg:w-[75%] leading-relaxed tracking-wide">Welcome back to Card Cafe credit card generator. Please sign in to continue from where you left off.</p>
                 </motion.div>
 

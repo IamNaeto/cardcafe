@@ -62,7 +62,7 @@ const CardDoc = () => {
                 className="flex flex-col gap-4 text-[14px] md:text-[16px]"
             >
                 <motion.h1
-                    className="text-[38px] lg:text-[46px] font-extrabold text-center lg:text-left"
+                    className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center lg:text-left"
                     initial={{ opacity: 0, y: -40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: "easeInOut" }}

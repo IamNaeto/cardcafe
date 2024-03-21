@@ -10,7 +10,7 @@ const Features = () => {
                 transition={{ duration: 1, ease: "easeInOut" }}
                 viewport={{ once: true }}
             >
-                <h1 className="text-[38px] md:text-[46px] font-extrabold text-center md:text-left">Features</h1>
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center md:text-left">Features</h1>
                 <ul className="leading-relaxed tracking-wide list-disc text-justify ml-5">
                     <li>Generate thousands of dummy credit card numbers & details using our free bulk generator tool.</li>
                     <li>Download and instantly save card samples to your account.</li>

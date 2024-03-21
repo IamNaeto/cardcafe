@@ -73,7 +73,7 @@ const Nav: React.FC<props> = ({ menu, setMenu, title, user }) => {
                 <h1 className="text-[#0F0F0F] text-[18px] md:text-[24px] font-bold">{title}</h1>
             </div>
 
-            <div className="relative flex items-center justify-center gap-4 text-[#0F0F0F]">
+            <div className="relative flex items-center justify-center gap-1 sm:gap-4 text-[#0F0F0F]">
                 <GoBell className="text-2xl" cursor="pointer" onClick={toggleNotification} />
                 {user?.img ? (
                     <Image src={user?.img} width={40} height={40} alt="user" className="rounded-full" />
