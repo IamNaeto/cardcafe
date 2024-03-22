@@ -110,7 +110,7 @@ const handleError = (error:any) => {
 
             <section className="grid place-items-center mt-6 md:mt-0">
             <ToastContainer />
-                <form action="" className="w-full sm:w-[95%] xl:w-[70%] grid gap-6 text-[14px] md:text-[16px] text-dark shadow shadow-yellow rounded-xl py-8 px-10">
+                <form action="" className="w-full sm:w-[95%] xl:w-[70%] grid gap-6 text-[14px] md:text-[16px] text-dark shadow shadow-yellow rounded-xl py-4 sm:py-8 px-5 sm:px-10">
                     <label htmlFor="fname">First Name
                         <input 
                         name="fname" 

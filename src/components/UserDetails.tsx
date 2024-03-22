@@ -53,7 +53,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ updatedUser, setUpdatedUser }
 
   return (
     <motion.main 
-    className="w-full xl:w-auto h-full grid gap-4 bg-[#fff] p-10 rounded-xl text-[14px] md:text-[16px] font-medium"
+    className="w-full xl:w-auto h-full grid gap-4 bg-[#fff] p-5 sm:p-10 rounded-xl text-[14px] md:text-[16px] font-medium"
     initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: "easeInOut" }}
