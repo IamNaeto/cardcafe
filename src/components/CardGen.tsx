@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -6,8 +5,8 @@ import html2canvas from "html2canvas";
 import JSZip from 'jszip';
 import CardFront from "./CardFront";
 import { useUser } from "@/app/hooks/UserContext";
-import { ref, set, child, update } from "firebase/database"; // Firebase imports
-import { auth, app, database } from "@/app/firebase/config";
+import { ref, update } from "firebase/database";
+import { database } from "@/app/firebase/config";
 import { motion } from "framer-motion";
 
 
@@ -15,7 +14,7 @@ interface CardData {
     cardNumber: string | null;
     cardCVV: string | null;
     cardType: string | null;
-    date: string; // Date in string format for Realtime Database
+    date: string;
 }
 
 const CardGen = () => {
