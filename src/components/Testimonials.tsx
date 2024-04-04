@@ -23,7 +23,7 @@ const Testimonials = () => {
                 viewport={{ once: true }}
                 >
                     <Image src={"/img/user-2.png"} width={70} height={70} alt="user1" loading="lazy" />
-                    <p>Card cafe is the best. I love the card designs, the navigation is simple and the platform is easy to use.</p>
+                    <p>Card Cafe allows us to simulate real transactions safely without using actual financial data.</p>
                 </motion.div>
 
                 <motion.div 
@@ -34,7 +34,7 @@ const Testimonials = () => {
                 viewport={{ once: true }}
                 >
                     <Image src={"/img/user-3.png"} width={70} height={70} alt="user1" loading="lazy" />
-                    <p>Card cafe is the best. I love the card designs, the navigation is simple and the platform is easy to use.</p>
+                    <p>Highly recommend it for anyone in need of reliable test credit card generation!</p>
                 </motion.div>
             </section>
 
