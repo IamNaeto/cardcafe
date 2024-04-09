@@ -94,10 +94,9 @@ const UserDetails: React.FC<UserDetailsProps> = ({ updatedUser, setUpdatedUser }
               type="email"
               name="email"
               value={updatedUser.email}
-              className="input"
-              disabled={!editing}
+              className="input cursor-not-allowed"
+              readOnly
               id="email"
-              onChange={handleInputChange}
             />
           </label>
 

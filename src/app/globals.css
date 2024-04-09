@@ -60,6 +60,10 @@
   transition: 1s;
 }
 
+input:disabled{
+  cursor: not-allowed;
+}
+
   /*Keyframes for the dangling animation */
   @keyframes dangle {
     0%, 100% {
