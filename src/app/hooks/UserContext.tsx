@@ -1,6 +1,6 @@
 import React, { createContext, useContext, ReactNode, useState, useEffect } from 'react';
 import { User } from 'firebase/auth';
-import { get, getDatabase, ref } from 'firebase/database';
+import { ref, getDatabase, onValue } from 'firebase/database';
 import { auth } from '@/app/firebase/config';
 import { LuLoader2 } from 'react-icons/lu';
 
@@ -19,51 +19,40 @@ export const UserProvider: React.FC<UserContextProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Check for localStorage and get userData if there is any
-  const handleUserData = () => {
-    if (typeof window !== 'undefined') {
-      const storedUser = localStorage.getItem('userData');
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-        setIsLoading(false);
+  // Fetch user data from database
+  const fetchUserData = (uid: string) => {
+    const userRef = ref(getDatabase(), `users/${uid}`);
+    onValue(userRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const userData = snapshot.val();
+        setUser(userData);
+        localStorage.setItem('userData', JSON.stringify(userData));
+      } else {
+        console.warn('User data not found in database');
       }
-    }
+      setIsLoading(false);
+    });
   };
 
-  //handleUserData within useEffect
   useEffect(() => {
-    handleUserData(); // Load user data from localStorage if available
+    // Load user data from localStorage if available
+    const storedUser = localStorage.getItem('userData');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+      setIsLoading(false);
+    }
 
-    // Fetch user data from database if not in localStorage or user changes
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
       if (currentUser) {
-        const userRef = ref(getDatabase(), `users/${currentUser.uid}`);
-        get(userRef)
-          .then((snapshot) => {
-            if (snapshot.exists()) {
-              const userData = snapshot.val();
-              setUser(userData);
-              // Save fetched data to localStorage
-              localStorage.setItem('userData', JSON.stringify(userData));
-            } else {
-              console.warn('User data not found in database');
-            }
-          })
-          .catch((error) => {
-            console.error('Error fetching user data:', error);
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
+        fetchUserData(currentUser.uid);
       } else {
         setIsLoading(false);
       }
     });
 
     return unsubscribe; // Clean up event listener on unmount
-  }, [auth]);
+  }, []);
 
-  // Cleanup function to remove user data from localStorage when unmounting
   useEffect(() => {
     return () => localStorage.removeItem('userData');
   }, []);

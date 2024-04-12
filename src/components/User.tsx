@@ -53,7 +53,7 @@ const User: React.FC<userProps> = ({ user }) => {
       </div>
       <button
         className="w-full bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 px-5 py-3 rounded-md text-white"
-        // onClick={handleProfilePictureUpload}
+      // onClick={handleProfilePictureUpload}
       >Change Image</button>
       <button
         className="w-full bg-gradient-to-b from-orange to-yellow hover-orange hover:shadow-2xl hover:shadow-orange transition-all delay-150 px-5 py-3 rounded-md text-white"
