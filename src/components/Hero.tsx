@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <main className="relative min-h-screen grid gap-5 hero-bg px-[5%] py-14 pt-[80px] md:pt-[120px]">
+    <main className="relative min-h-screen grid gap-5 hero-bg px-[5%] py-14 pt-[90px] md:pt-[100px]">
       <section className="grid grid-cols-1 md:grid-cols-2 justify-between items-center gap-5">
         <motion.div
           className="flex flex-col justify-center md:justify-center gap-4 text-[14px] md:text-[16px] text-center md:text-left text-dark font-normal"
@@ -14,7 +14,7 @@ const Hero = () => {
           transition={{ duration: 1, ease: "easeInOut" }} // Animation duration and easing
           viewport={{ once: true }}
         >
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold">Create Test Credit Cards Samples</h1>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold">Create Test Credit Cards Samples</h1>
           <p className="w-full lg:w-[75%]">
             We help you create dummy credit card samples with card numbers, CVV, and card name - for eCommerce data testing purposes.
           </p>
