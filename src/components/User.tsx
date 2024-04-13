@@ -91,12 +91,12 @@ const User: React.FC<UserProps> = ({ user }) => {
             {userData?.firstName?.charAt(0)}{userData?.lastName?.charAt(0)}
           </h1>
         )}
-        <h1 className="text-[18px] md:text-[24px] font-bold">{userData?.firstName} {userData?.lastName}</h1>
-        <p className="text-[14px] md:text-[16px] font-normal">{userData?.email}</p>
+        <h1 className="text-[18px] md:text-[24px] font-bold">{user?.firstName} {user?.lastName}</h1>
+        <p className="text-[14px] md:text-[16px] font-normal">{user?.email}</p>
         <div className="flex items-center">
           <CiLocationOn className="text-2xl" />
-          {userData?.location ? (
-            <p className="text-[12px] md:text-[14px]">{userData?.location}</p>
+          {user?.location ? (
+            <p className="text-[12px] md:text-[14px]">{user?.location}</p>
           ) : (
             <p className="text-[12px] md:text-[14px]">No provided address</p>
           )}
