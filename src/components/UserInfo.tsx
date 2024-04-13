@@ -37,7 +37,7 @@ const UserInfo: React.FC<Props> = ({ user }) => {
     >
       <section className="flex flex-col md:flex-row items-center justify-center gap-4">
         {user?.img ? (
-          <Image src={user?.img} width={70} height={70} alt="user" className="rounded-full" />
+          <Image src={user?.img} width={500} height={500} alt="user" className="rounded-full shadow-xl  w-[100px] h-[100px]" />
         ) : (
           <h1 className="text-[34px] font-bold py-2 px-3 rounded-full border-[3px] border-orange text-orange">
             {user?.firstName?.charAt(0)}{user?.lastName?.charAt(0)}

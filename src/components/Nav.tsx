@@ -76,7 +76,7 @@ const Nav: React.FC<props> = ({ menu, setMenu, title, user }) => {
             <div className="relative flex items-center justify-center gap-1 sm:gap-4 text-[#0F0F0F]">
                 <GoBell className="text-2xl" cursor="pointer" onClick={toggleNotification} />
                 {user?.img ? (
-                    <Image src={user?.img} width={40} height={40} alt="user" className="rounded-full" />
+                    <Image src={user?.img} width={200} height={200} alt="user" className="w-[40px] h-[40px] rounded-full" />
                 ) : (
                     <h1 className="text-[18px] font-bold px-2 py-[6px] rounded-full border-[3px] border-orange text-orange">
                         {user?.firstName?.charAt(0)}{user?.lastName?.charAt(0)}
@@ -97,7 +97,7 @@ const Nav: React.FC<props> = ({ menu, setMenu, title, user }) => {
                 >
                     <Link href={"/profile"} className="flex items-center justify-center gap-2 pb-2 border-b border-b-orange px-2 overflow-hidden bg-[#fff] hover:bg-[#FEF0E8] delay-150 transition-all py-4 rounded-t-2xl">
                         {user?.img ? (
-                            <Image src={user?.img} width={70} height={70} alt="user" className="rounded-full" />
+                            <Image src={user?.img} width={70} height={70} alt="user" className="w-[60px] h-[60px] shadow-xl rounded-full" />
                         ) : (
                             <h1 className="text-[24px] font-bold py-2 px-3 rounded-full border-[3px] border-orange text-orange">
                                 {user?.firstName?.charAt(0)}{user?.lastName?.charAt(0)}
