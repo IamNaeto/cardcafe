@@ -12,7 +12,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 40 }} // Initial state: hidden, slightly off-screen
           whileInView={{ opacity: 1, y: 0 }} // Animate to full opacity and on-screen position
           transition={{ duration: 1, ease: "easeInOut" }} // Animation duration and easing
-          viewport={{ once: true }}
+          viewport={{ once: true }} //Allow to only view the animation once
         >
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold">Create Test Credit Cards Samples</h1>
           <p className="w-full lg:w-[75%]">
@@ -24,11 +24,11 @@ const Hero = () => {
         </motion.div>
 
         <motion.div
-          className="flex items-center justify-center my-4 md:my-0"
+          className="flex items-center md:items-end justify-center md:justify-end my-4 md:my-0"
           initial={{ opacity: 0, scale: 0.7 }} // Initial state: hidden, slightly scaled down
           whileInView={{ opacity: 1, scale: 1 }} // Animate to full opacity and original scale
           transition={{ duration: 1, ease: "easeInOut" }} // Animation duration and easing
-          viewport={{ once: true }}
+          viewport={{ once: true }} //Allow animation view once
         >
           <Image
             src={"/img/heroimage.png"}
